@@ -25,6 +25,6 @@ RCC_DIR      = $$TEMPDIR
 UI_DIR       = $$TEMPDIR/Ui
 LIBS        += -L$$PRJDIR/xbin
 
-INCLUDEPATH += . $$PRJDIR/lib
+INCLUDEPATH += . $$PRJDIR/lib $$PRJDIR/lib/qhttp
 #INCLUDEPATH +=  . $$PRJDIR/lib/qhttp $$PRJDIR/lib/http-parser ..
 
