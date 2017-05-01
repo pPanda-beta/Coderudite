@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Patternfly test</title>
+
+		<script  src="./assets/common/init.js" ></script>	
+
+		<script>
+
+		</script>		
+
+		<style type="text/css">
+		</style>
+
+	</head>
+
+	<body>
+
+
+		<nav id="head" class="navbar navbar-default navbar-pf navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+
+				</button>
+				<a class="navbar-brand" href="/">Coderudite_ronin</a>
+			</div>
+			<div class="collapse navbar-collapse navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-utility">
+					<li>
+						<a href="#">Notification</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="pficon pficon-user"></span>
+							Programmer Panda <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-primary">
+					<li >	<a href="#" >Contest</a>	</li>
+					<li class="active"><a href="#">Problem 1</a></li>
+					<li><a href="#">Submissions</a></li>
+					<li><a href="#">Leaderboard</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div id="main_body">
+			<!--<h1>1. Programmer Panda</h1><br/>
+			<h1>2. Programmer Panda</h1><br/>
+			<h1>3. Programmer Panda</h1><br/>
+			<h1>Programmer Panda</h1><br/>
+			<h1>Programmer Panda</h1><br/>
+			<h1>Programmer Panda</h1><br/>
+			<h1>Programmer Panda</h1><br/>
+			<h1>Programmer Panda</h1><br/>
+			<h1>Programmer Panda</h1><br/>
+			<h1>Programmer Panda</h1><br/>
+			<h1>12. Programmer Panda</h1><br/>-->
+
+			<br/>
+			<br/><br/><br/><br/><br/>
+			<div class=WordSection1>
+
+				<h1 align=center style='text-align:center'>Makaut : Palash’s Party</h1>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>Palash was
+					throwing a party this week for his awesome MAKAUT result. He invited all his college
+					friends including girls and boys, seniors and juniors in the party. Puja being
+					Palash’s best friend was invited in the party too. There were many people in
+					the party who knew Palash, but they were not known by his other friends. So,
+					they decided to talk to each other (1 unknown can talk to only 2 unknown
+					friends and not all). While the introduction was going on Puja saw a pattern
+					the people were following. </p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>Every Girl
+					in the party met a Girl first then a Boy whereas every Boy met a Boy first then
+					a Girl. Puja analyzes this pattern and gets curious. Now she wants to know who
+					will be the N<sup>th</sup> person to in the K<sup>th </sup>meeting. Can you
+					help her?</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>&nbsp;</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>Points to note:</p>
+
+				<p class=MsoListParagraphCxSpFirst style='margin-bottom:0in;margin-bottom:.0001pt;
+				   text-indent:-.25in'><span style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span></span>Every person meets exactly 2 person (a boy and a girl).</p>
+
+				<p class=MsoListParagraphCxSpLast style='margin-bottom:0in;margin-bottom:.0001pt;
+				   text-indent:-.25in'><span style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span></span>The generation starts with a boy.</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>&nbsp;</p>
+
+				<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+				   margin-left:.5in;margin-bottom:.0001pt'>B       ------------------1<sup>st</sup>
+					meeting</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>           
+					/      \</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>         
+					B          G -----------------2<sup>nd</sup> meeting</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>        /  
+					\      /   \</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>      B    
+					G   G     B</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>                    
+					|</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>                 
+					3<sup>rd</sup> person of 3<sup>rd</sup> meeting is a Girl</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>&nbsp;</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'><b>INPUT:</b></p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>First line
+					specifies T, the number of test cases.</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>The next T
+					lines each gives 2 numbers, K and N.</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'><b>&nbsp;</b></p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'><b>OUTPUT:</b></p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>Output 1
+					line for each test case giving the answer to Palash’s question.</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>Print “BOY”
+					for boy, and “GIRL” for girl (quotes are only for clarification).</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>&nbsp;</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'><b>CONSTRAINTS:</b></p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>1 &#8804; T
+					&#8804; 10000</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>1 &#8804; K
+					&#8804; 10000</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt'>1 &#8804; N
+					&#8804; min(10<sup>15</sup>,2<sup>K-1</sup>)</p>
+
+				<p class=MsoNormal>&nbsp;</p>
+
+				<p class=MsoNormal><b>INPUT</b></p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+				   normal'><a name="OLE_LINK2"></a><a name="OLE_LINK1">2</a></p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+				   normal'>3 3</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+				   normal'>5 4</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+				   normal'>&nbsp;</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+				   normal'><b>OUTPUT</b></p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+				   normal'>GIRL</p>
+
+				<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+				   normal'>BOY</p>
+				<br/><br/><br/><br/><br/>
+
+			</div>
+		</div>
+
+		<footer id="foot" class="footer navbar-fixed-bottom navbar-pf">
+			<div class="container">
+				<p class="text-muted">Programmer Panda &copy; 2016 All Rights Reserved</p>
+			</div>
+		</footer>
+
+		<script type="text/javascript">
+
+		</script>
+
+	</body>
+</html>

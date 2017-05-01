@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+    body {
+        overflow: hidden;
+    }
+
+    #editor {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 200px;
+		width: 80%;    }
+  </style>
+</head>
+<body>
+
+	<H1>Coderudite Browser-based - IDE </H1>
+
+<select id="lang" >
+	<option value="c" >C</option>
+	<option value="java" selected >Java</option>
+</select>
+
+<pre id="editor">
+
+public class Main {
+    public static void main(String args[]){
+        System.out.println("Hello CSE");
+    }
+}
+</pre>
+
+
+<script src="assets/lib/ace.js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/lib/ace.js/src-min/ext-language_tools.js"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/eclipse");
+    editor.session.setMode("ace/mode/java");
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+</script>
+
+<p>
+	Custom input <br/>
+	<textarea id="inpBox"></textarea>
+	
+	<button id="rbtn"> Run </button>
+	<br/>
+
+	Output <br/>
+	<pre id="oup" style="border : 2px solid black; "></pre> <br/>
+
+	Status : <div id="st"></div> <br/>
+	Error : <br/>
+	<pre id="err" style="border : 2px solid black; "></pre>
+	
+</p>
+
+<script>
+
+var langSel = document.getElementById("lang");
+var outBox = document.getElementById("oup");
+var statusHolder = document.getElementById("st");
+var errBox = document.getElementById("err");
+var type = 'java';
+
+langSel.onchange = function(){
+	type = langSel.value;
+	if(type === 'java'){
+		editor.session.setMode("ace/mode/java");		
+	} else {
+		editor.session.setMode("ace/mode/c_cpp");
+	}
+	console.log(type);
+};
+	
+document.getElementById("rbtn").onclick = function(){	
+	var data='source='+encodeURIComponent(editor.getValue()) 
+			+'&'+'type='+ type
+			+'&'+'inp=' + encodeURIComponent(document.getElementById("inpBox").value) ;
+			
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'http://localhost:5553', true);
+	xhr.onload = function () {
+		console.log(this.responseText);
+		var result = JSON.parse(this.responseText);
+		outBox.textContent = result.output_data;
+		errBox.textContent = result.errors;
+		statusHolder.innerText = result.status;
+	};
+	xhr.send(data);
+};
+
+</script>
+
+</body>
+</html>
