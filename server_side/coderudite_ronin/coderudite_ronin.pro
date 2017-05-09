@@ -17,11 +17,6 @@ include($$PRJDIR/commondir.pri)
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    qhttpserver/src/qhttpconnection.cpp \
-    qhttpserver/src/qhttprequest.cpp \
-    qhttpserver/src/qhttpresponse.cpp \
-    qhttpserver/src/qhttpserver.cpp \
-    qhttpserver/http-parser/http_parser.c \
     cdnview.cpp \
     abstractserver.cpp \
     cdn.cpp \
@@ -32,13 +27,6 @@ SOURCES += main.cpp\
     run_server_view.cpp
 
 HEADERS  += mainwindow.h \
-    qhttpserver/src/qhttpconnection.h \
-    qhttpserver/src/qhttprequest.h \
-    qhttpserver/src/qhttpresponse.h \
-    qhttpserver/src/qhttpserver.h \
-    qhttpserver/src/qhttpserverapi.h \
-    qhttpserver/src/qhttpserverfwd.h \
-    qhttpserver/http-parser/http_parser.h \
     cdnview.h \
     abstractserver.h \
     cdn.h \
