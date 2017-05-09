@@ -2,6 +2,7 @@
 #include <QDebug>
 
 map<string, function<void(Solution &, QProcess&, RunResult &)>> prepare;
+string runsDirPath = MAC2STR(APPROOT) + "/data/tmp"s;
 
 Run::Run(Solution src):m_src(src)
 {
@@ -69,9 +70,10 @@ void setCompilationError(RunResult &result, QProcess &compile)
 
 void prepareGcc(Solution &src, QProcess &run_process, RunResult &result)
 {
-	saveToFile("src.c", src);
+	saveToFile(runsDirPath+"/src.c", src);
 
 	QProcess compile;
+	compile.setWorkingDirectory(QString::fromStdString(runsDirPath));
 	compile.start("gcc", QStringList()<<"src.c"<<"-o"<<"src.out");
 	if(!compile.waitForFinished()  || compile.exitCode() != 0)
 		setCompilationError(result, compile);
@@ -81,8 +83,9 @@ void prepareGcc(Solution &src, QProcess &run_process, RunResult &result)
 
 void prepareJava(Solution &src, QProcess &run_process, RunResult &result)
 {
-	saveToFile("Main.java",src);
+	saveToFile(runsDirPath+"/Main.java",src);
 	QProcess compile;
+	compile.setWorkingDirectory(QString::fromStdString(runsDirPath));
 	compile.start("javac", QStringList()<<"Main.java");
 	if(!compile.waitForFinished()  || compile.exitCode() != 0)
 		setCompilationError(result, compile);

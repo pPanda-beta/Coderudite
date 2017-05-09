@@ -11,6 +11,10 @@
 #include "qhttpserverrequest.hpp"
 
 
+#define Y2X(X)	#X
+#define MAC2STR(Y) Y2X(Y)
+
+
 namespace
 {
 using namespace std;

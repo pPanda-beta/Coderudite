@@ -76,7 +76,7 @@ QMAKE_LINK += -shared-libgcc
 #QMAKE_POST_LINK += $(COPY_DIR) $$system_path($$PWD/data) $$system_path($$OUT_PWD/)
 
 
-#DEFINES += "SITEROOT=\"../../..\""
-DEFINES += "SITEROOT=\"$$PRJDIR\""
+#DEFINES += "APPROOT=\"../../..\""
+DEFINES += "APPROOT=\"$$PRJDIR\""
 
 #ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

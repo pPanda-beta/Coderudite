@@ -7,7 +7,7 @@ CDNview::CDNview(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	m_cdn=new CDN(MAC2STR(SITEROOT)+tr("/data/webroot"),{8080,80});
+	m_cdn=new CDN(MAC2STR(APPROOT)+tr("/data/webroot"),{8080,80});
 }
 
 CDNview::~CDNview()

@@ -17,7 +17,7 @@ CDN::CDN(const QDir& wwwrt, initializer_list<quint16> portList)
 	if(mime.empty())
 	{
 		string ext,typ;
-		ifstream k(MAC2STR(SITEROOT)+"/data/mime_types.txt"s);
+		ifstream k(MAC2STR(APPROOT)+"/data/mime_types.txt"s);
 
 		while( k.is_open() and not k.eof())
 		{
