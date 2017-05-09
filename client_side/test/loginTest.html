@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+This is the master page
+-->
+<html>
+	<head>
+		<script src="../public_html/assets/common/init.js"></script>
+		<script>
+			var siteroot = '../public_html/';
+			loadScripts(siteroot, externalLibraries);
+		</script>
+	</head>
+
+	<body>
+		<script>
+			var loginTestApp = angular.module('mainNgApp', []);
+		</script>
+		<div ng-app="mainNgApp" ng-controller="loginController">
+			<div ng-include="'../public_html/view/loginView.html'">		</div>
+			<script src="../public_html/controller/loginController.js"></script>
+		</div>
+	</body>
+</html>
