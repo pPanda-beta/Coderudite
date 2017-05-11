@@ -24,7 +24,10 @@ SOURCES += main.cpp\
     model/runresult.cpp \
     model/run.cpp \
     dedicatedrunserver.cpp \
-    run_server_view.cpp
+    run_server_view.cpp \
+    servlet/abstractServlet.cpp \
+    contesthostserver.cpp \
+    servlet/errorservlet.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -35,7 +38,10 @@ HEADERS  += mainwindow.h \
     model/run.h \
     dedicatedrunserver.h \
     run_server_view.h \
-    helpers.hxx
+    helpers.hxx \
+    servlet/abstractServlet.hpp \
+    contesthostserver.h \
+    servlet/errorservlet.hpp
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser

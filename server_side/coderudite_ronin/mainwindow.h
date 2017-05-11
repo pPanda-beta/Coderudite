@@ -5,6 +5,7 @@
 #include <vector>
 #include "cdnview.h"
 #include "run_server_view.h"
+#include "contesthostserver.h"
 
 namespace Ui {
 class MainWindow;

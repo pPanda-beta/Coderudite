@@ -1,4 +1,5 @@
 #include "abstractserver.h"
+#include "helpers.hxx"
 
 AbstractServer::AbstractServer()
 {

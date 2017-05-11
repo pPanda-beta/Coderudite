@@ -62,15 +62,21 @@ map<string,string> parsePOST(auto &&req)
 }
 }
 
+
 template<typename T>
-void replyWith(QHttpResponse *resp, const T& doc)
+void replyWith(QHttpResponse *resp, const T& doc, TStatusCode code)
 {
 	resp->addHeader("Content-Length", QByteArray::number(doc.size()));
 	resp->addHeader("Access-Control-Allow-Origin"," * ");
 	resp->addHeader("Access-Control-Allow-Headers","GET,POST,PUT");
-	resp->setStatusCode(ESTATUS_OK);
-	resp->end(doc);
+	resp->setStatusCode(code);
+	resp->end(QByteArray(doc.data()));
 }
 
+template<typename T>
+void replyWith(QHttpResponse *resp, const T& doc)
+{
+	replyWith(resp,doc,ESTATUS_OK);
+}
 
 #endif // HELPERS_HXX

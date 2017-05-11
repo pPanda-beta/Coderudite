@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //	system("pwd");
 	on_lnchCDN_clicked();
 	on_lnchRunSrv_clicked();
+	new ContestHostServer({4444});
 }
 
 MainWindow::~MainWindow()
