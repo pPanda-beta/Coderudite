@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     contesthostserver.cpp \
     servlet/errorservlet.cpp \
     contesthost_server_view.cpp \
-    mapper/abstractmapper.cpp
+    mapper/abstractmapper.cpp \
+    mapper/usermapper.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.h \
     servlet/errorservlet.hpp \
 	contesthost_server_view.h \
     mapper/abstractmapper.h \
-    constants.hxx
+    constants.hxx \
+    mapper/usermapper.h
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser

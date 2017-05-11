@@ -2,6 +2,7 @@
 #include <QApplication>
 
 #include "mapper/abstractmapper.h"
+#include "mapper/usermapper.h"
 
 void createPathIfNotExist(string path)
 {
@@ -15,7 +16,15 @@ void appInit()
 	createPathIfNotExist(siteRoot);
 	createPathIfNotExist(userDataRoot);
 
-	AbstractMapper::universal_db = database(dbPath);
+	try
+	{
+		AbstractMapper::universal_db = database(dbPath);
+		UserMapper();
+	}
+	catch (exception& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
 int main(int argc, char *argv[])

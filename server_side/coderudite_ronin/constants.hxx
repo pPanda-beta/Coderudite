@@ -3,7 +3,6 @@
 
 #include <string>
 
-
 #define Y2X(X)	#X
 #define MAC2STR(Y) Y2X(Y)
 
