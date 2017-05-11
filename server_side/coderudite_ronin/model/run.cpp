@@ -2,7 +2,7 @@
 #include <QDebug>
 
 map<string, function<void(Solution &, QProcess&, RunResult &)>> prepare;
-string runsDirPath = MAC2STR(APPROOT) + "/data/tmp"s;
+string runsDirPath = appRoot + "/data/tmp"s;
 
 Run::Run(Solution src):m_src(src)
 {

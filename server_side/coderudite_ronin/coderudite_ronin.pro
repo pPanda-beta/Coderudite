@@ -45,7 +45,8 @@ HEADERS  += mainwindow.h \
     contesthostserver.h \
     servlet/errorservlet.hpp \
 	contesthost_server_view.h \
-    mapper/abstractmapper.h
+    mapper/abstractmapper.h \
+    constants.hxx
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser

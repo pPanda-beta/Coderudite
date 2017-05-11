@@ -8,6 +8,7 @@
 #include <initializer_list>
 
 #include "helpers.hxx"
+#include "constants.hxx"
 
 using namespace std;
 using namespace qhttp;

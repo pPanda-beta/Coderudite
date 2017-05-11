@@ -7,6 +7,7 @@
 #include <functional>
 #include "runresult.h"
 #include "helpers.hxx"
+#include "constants.hxx"
 
 class Run
 {
