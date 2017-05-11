@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     servlet/abstractServlet.cpp \
     contesthostserver.cpp \
     servlet/errorservlet.cpp \
-    contesthost_server_view.cpp
+    contesthost_server_view.cpp \
+    mapper/abstractmapper.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     servlet/abstractServlet.hpp \
     contesthostserver.h \
     servlet/errorservlet.hpp \
-	contesthost_server_view.h
+	contesthost_server_view.h \
+    mapper/abstractmapper.h
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser
@@ -54,7 +56,7 @@ DEFINES += "QHTTPSERVER_API=\"\""
 ##
 
 
-LIBS      += -lqhttp
+LIBS      += -lqhttp -lsqlite3
 
 
 FORMS    += mainwindow.ui \
