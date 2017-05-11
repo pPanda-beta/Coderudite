@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //	system("pwd");
 	on_lnchCDN_clicked();
 	on_lnchRunSrv_clicked();
-	new ContestHostServer({4444});
+	on_lnchCHostSrv_clicked();
 }
 
 MainWindow::~MainWindow()
@@ -32,4 +32,9 @@ void MainWindow::on_lnchCDN_clicked()
 void MainWindow::on_lnchRunSrv_clicked()
 {
 	ui->tabWidget->addTab(new run_server_view,tr("Run Server"));
+}
+
+void MainWindow::on_lnchCHostSrv_clicked()
+{
+	ui->tabWidget->addTab(new contesthost_server_view,tr("Contest Host Server"));
 }

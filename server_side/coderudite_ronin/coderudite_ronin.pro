@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     run_server_view.cpp \
     servlet/abstractServlet.cpp \
     contesthostserver.cpp \
-    servlet/errorservlet.cpp
+    servlet/errorservlet.cpp \
+    contesthost_server_view.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.h \
     helpers.hxx \
     servlet/abstractServlet.hpp \
     contesthostserver.h \
-    servlet/errorservlet.hpp
+    servlet/errorservlet.hpp \
+	contesthost_server_view.h
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser
@@ -57,7 +59,8 @@ LIBS      += -lqhttp
 
 FORMS    += mainwindow.ui \
     cdnview.ui \
-    run_server_view.ui
+    run_server_view.ui \
+    contesthost_server_view.ui
 
 CONFIG -= c++11 -frtti -fexceptions
 CONFIG += thread warn_off

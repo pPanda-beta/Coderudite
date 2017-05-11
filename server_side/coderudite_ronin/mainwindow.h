@@ -5,7 +5,7 @@
 #include <vector>
 #include "cdnview.h"
 #include "run_server_view.h"
-#include "contesthostserver.h"
+#include "contesthost_server_view.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +23,8 @@ private slots:
 	void on_lnchCDN_clicked();
 
 	void on_lnchRunSrv_clicked();
+
+	void on_lnchCHostSrv_clicked();
 
 private:
 	Ui::MainWindow *ui;
