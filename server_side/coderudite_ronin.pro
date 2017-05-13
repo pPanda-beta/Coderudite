@@ -6,6 +6,8 @@ SUBDIRS += lib/qhttp \
 
 SUBDIRS += coderudite_ronin
 
+SUBDIRS += test
+
 coderudite_ronin.depends = lib/qhttp
 coderudite_ronin.depends = lib/sqlite3
 coderudite_ronin.depends = lib/sqlite_modern_cpp_3_1

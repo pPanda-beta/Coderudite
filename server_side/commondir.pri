@@ -29,7 +29,9 @@ UI_DIR       = $$TEMPDIR/Ui
 LIBS        += -L$$PRJDIR/xbin
 
 INCLUDEPATH += . \
-	$$PRJDIR/lib $$PRJDIR/lib/qhttp \
+	$$PRJDIR/coderudite_ronin	\
+	$$PRJDIR/lib \
+	$$PRJDIR/lib/qhttp \
 	$$PRJDIR/lib/sqlite3 \
 	$$PRJDIR/lib/sqlite_modern_cpp_3_1
 #INCLUDEPATH +=  . $$PRJDIR/lib/qhttp $$PRJDIR/lib/http-parser ..

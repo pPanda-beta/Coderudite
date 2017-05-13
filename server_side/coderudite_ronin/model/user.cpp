@@ -1,27 +1,27 @@
 #include "user.h"
 
 
-User::User(string _email, string _password):email(_email),password(_password)
+User::User(QString _email, QString _password):email(_email),password(_password)
 {
 }
 
-string User::get_password() const
+QString User::get_password() const
 {
 	return password;
 }
 
-User& User::set_password(const string &value)
+User& User::set_password(const QString &value)
 {
 	password = value;
 	return *this;
 }
 
-string User::get_email() const
+QString User::get_email() const
 {
 	return email;
 }
 
-User& User::set_email(const string &value)
+User& User::set_email(const QString &value)
 {
 	email = value;
 	return *this;
