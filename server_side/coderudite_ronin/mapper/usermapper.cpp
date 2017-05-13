@@ -13,3 +13,8 @@ UserMapper::UserMapper()
 {
 	db<<createUserTableSql;
 }
+
+bool UserMapper::insertUser(const User &)
+{//Not implemented
+
+}
