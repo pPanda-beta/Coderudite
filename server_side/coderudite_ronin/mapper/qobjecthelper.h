@@ -25,7 +25,10 @@
 #include <QStringList>
 #include <QVariantMap>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QJsonDocument>
+
+//#include <algorithm>
 
 QT_BEGIN_NAMESPACE
 class QObject;
@@ -36,6 +39,7 @@ public:
 	QObjectHelper();
 	~QObjectHelper();
 
+	static const QStringList defaultIgnoredList;//(QString(QLatin1String("objectName")));
 	/**
 	* This method converts a QObject instance into a QVariantMap.
 	*
@@ -47,6 +51,15 @@ public:
 
 	static QJsonObject qobject2qjson( const QObject* object,
 										 const QStringList& ignoredProperties = QStringList(QString(QLatin1String("objectName"))));
+
+	static QJsonArray qobjectS2qjsonArray(auto &&qobjects, const QStringList& ignoredProperties = defaultIgnoredList)
+	{
+		QJsonArray result;
+//		std::transform(begin(qobjects),end(qobjects),result.begin(),qobject2qjson);
+		for(auto &qobject:qobjects)
+			result.push_back(qobject2qjson(qobject, ignoredProperties));
+		return	result;
+	}
 
 	/**
 	* This method converts a QVariantMap instance into a QObject
