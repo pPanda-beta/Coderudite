@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     contesthost_server_view.cpp \
     mapper/abstractmapper.cpp \
     mapper/usermapper.cpp \
-    model/user.cpp
+	model/user.cpp	\
+    mapper/qobjecthelper.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -50,7 +51,8 @@ HEADERS  += mainwindow.h \
     mapper/abstractmapper.h \
     constants.hxx \
     mapper/usermapper.h \
-    model/user.h
+	model/user.h	\
+    mapper/qobjecthelper.h
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser
