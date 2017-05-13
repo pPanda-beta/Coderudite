@@ -1,7 +1,10 @@
 #include "user.h"
 
 
-User::User(QString _email, QString _password):email(_email),password(_password)
+User::User( QString _email, QString _password, QString _id)
+	:id(_id),
+	  email(_email),
+	  password(_password)
 {
 }
 
@@ -24,6 +27,17 @@ QString User::get_email() const
 User& User::set_email(const QString &value)
 {
 	email = value;
+	return *this;
+}
+
+QString User::get_id() const
+{
+	return id;
+}
+
+User& User::set_id(const QString &value)
+{
+	id = value;
 	return *this;
 }
 

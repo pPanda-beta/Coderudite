@@ -39,18 +39,16 @@ public:
 	QObjectHelper();
 	~QObjectHelper();
 
-	static const QStringList defaultIgnoredList;//(QString(QLatin1String("objectName")));
+	static const QStringList defaultIgnoredList;
 	/**
 	* This method converts a QObject instance into a QVariantMap.
 	*
 	* @param object The QObject instance to be converted.
 	* @param ignoredProperties Properties that won't be converted.
 	*/
-	static QVariantMap qobject2qvariant( const QObject* object,
-										 const QStringList& ignoredProperties = QStringList(QString(QLatin1String("objectName"))));
+	static QVariantMap qobject2qvariant( const QObject* object, const QStringList& ignoredProperties = defaultIgnoredList);
 
-	static QJsonObject qobject2qjson( const QObject* object,
-										 const QStringList& ignoredProperties = QStringList(QString(QLatin1String("objectName"))));
+	static QJsonObject qobject2qjson( const QObject* object, const QStringList& ignoredProperties = defaultIgnoredList);
 
 	static QJsonArray qobjectS2qjsonArray(auto &&qobjects, const QStringList& ignoredProperties = defaultIgnoredList)
 	{

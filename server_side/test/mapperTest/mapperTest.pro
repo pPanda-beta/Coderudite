@@ -23,5 +23,9 @@ HEADERS += ../../coderudite_ronin/model/user.h
 SOURCES += tst_mappertest.cpp \
 	../../coderudite_ronin/model/user.cpp \
 	../../coderudite_ronin/mapper/qobjecthelper.cpp \
+	../../coderudite_ronin/mapper/abstractmapper.cpp	\
+	../../coderudite_ronin/mapper/usermapper.cpp
+
+LIBS      +=  -lsqlite3
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

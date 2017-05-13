@@ -19,7 +19,8 @@ void appInit()
 	try
 	{
 		AbstractMapper::universal_db = database(dbPath);
-		UserMapper();
+		UserMapper uMp;
+		uMp.insertUser(User("12","34"));
 	}
 	catch (exception& e)
 	{

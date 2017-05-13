@@ -63,7 +63,7 @@ DEFINES += "QHTTPSERVER_API=\"\""
 ##
 
 
-LIBS      += -lqhttp -lsqlite3
+LIBS      += -lqhttp -lsqlite3 -shared-libgcc
 
 
 FORMS    += mainwindow.ui \

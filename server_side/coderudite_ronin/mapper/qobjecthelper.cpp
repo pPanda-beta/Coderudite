@@ -41,6 +41,8 @@
 //	delete d;
 //}
 
+const QStringList QObjectHelper::defaultIgnoredList({"objectName"});
+
 QVariantMap QObjectHelper::qobject2qvariant( const QObject* object,
 											 const QStringList& ignoredProperties)
 {
