@@ -2,7 +2,7 @@
 #define USER_H
 
 #include <QObject>
-#include <QString>
+#include "qstringex.h"
 #include <string>
 
 using namespace std;
@@ -15,22 +15,22 @@ struct User : public QObject
 	Q_PROPERTY(QString password READ get_password WRITE set_password)
 
 public:
-	User(auto&& ...args):User(QString::fromStdString(args)...)	{}
+//	User(auto&& ...args):User(QString::fromStdString(args)...)	{}
 
 	User(const User&)=default;
-	User(QString, QString _password="", QString _id="");
+	User(QStringEx, QStringEx _password="", QStringEx _id="");
 
-	QString get_id() const;
-	User& set_id(const QString &value);
+	QStringEx get_id() const;
+	User& set_id(const QStringEx &value);
 
-	QString get_email() const;
-	User& set_email(const QString &value);
+	QStringEx get_email() const;
+	User& set_email(const QStringEx &value);
 
-	QString get_password() const;
-	User& set_password(const QString &value);
+	QStringEx get_password() const;
+	User& set_password(const QStringEx &value);
 
 private :
-	QString id, email, password;
+	QStringEx id, email, password;
 };
 
 #endif // USER_H

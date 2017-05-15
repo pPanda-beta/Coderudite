@@ -38,13 +38,13 @@ bool UserMapper::insertUser(const User &user)
 {
 	try
 	{
-		getUserByEmail(user.get_email().toStdString());
+		getUserByEmail(user.get_email());
 		return false;
 	}	//should throw exception
 	catch (...)	{}
 
 	db<<"INSERT INTO user (email, password) values(?,?) ;"
-	 <<user.get_email().toStdString()
-	<<user.get_password().toStdString();
+	 <<user.get_email()
+	<<user.get_password();
 	return true;
 }

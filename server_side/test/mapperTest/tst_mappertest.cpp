@@ -34,7 +34,7 @@ void MapperTest::testQObjectToJson()
 {
 	QByteArray serializedMrJoe = "{\n    \"email\": \"mrJoe@e.c\",\n    \"password\": \"pppasss\"\n}\n";
 	auto &&qJson = QObjectHelper::qobject2qjson(&mrJoe,QStringList({"id","objectName"}));
-	//	qDebug()<<QJsonDocument(qJson).toJson();
+		qDebug()<<QJsonDocument(qJson).toJson();
 
 	QCOMPARE(QJsonDocument(qJson).toJson(),serializedMrJoe);
 }
@@ -44,9 +44,9 @@ void MapperTest::testInsertionAndQueryUser()
 	try
 	{
 		userMapper.db<<"DELETE FROM user WHERE email = ?;"
-					<<mrJoe.get_email().toStdString();
+					<<mrJoe.get_email();
 		userMapper.insertUser(mrJoe);		
-		auto mrJoeP = userMapper.getUserByEmail(mrJoe.get_email().toStdString());
+		auto mrJoeP = userMapper.getUserByEmail(mrJoe.get_email());
 
 		QCOMPARE(mrJoe.get_email(), mrJoeP->get_email());
 		QCOMPARE(mrJoe.get_password(), mrJoeP->get_password());

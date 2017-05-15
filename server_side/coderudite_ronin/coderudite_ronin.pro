@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     mapper/abstractmapper.cpp \
     mapper/usermapper.cpp \
 	model/user.cpp	\
-    mapper/qobjecthelper.cpp
+    mapper/qobjecthelper.cpp \
+    model/qstringex.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -52,7 +53,8 @@ HEADERS  += mainwindow.h \
     constants.hxx \
     mapper/usermapper.h \
 	model/user.h	\
-    mapper/qobjecthelper.h
+    mapper/qobjecthelper.h \
+    model/qstringex.h
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser
