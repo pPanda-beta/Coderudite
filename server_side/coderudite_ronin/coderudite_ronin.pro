@@ -54,7 +54,8 @@ HEADERS  += mainwindow.h \
     mapper/usermapper.h \
 	model/user.h	\
     mapper/qobjecthelper.h \
-    model/qstringex.h
+    model/qstringex.h \
+    model/bean.hxx
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser

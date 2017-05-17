@@ -28,6 +28,11 @@ private Q_SLOTS:
 MapperTest::MapperTest()
 	: mrJoe("mrJoe@e.c","pppasss")
 {
+	userMapper.db<<"SELECT * FROM user ;"
+				>>[](string i, string e, string p)
+	{
+		qDebug()<<i.data()<<e.data()<<p.data();
+	};
 }
 
 void MapperTest::testQObjectToJson()

@@ -3,31 +3,28 @@
 
 #include <QObject>
 #include "qstringex.h"
-#include <string>
+#include "bean.hxx"
 
 using namespace std;
 
 struct User : public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(QString id READ get_id WRITE set_id)
-	Q_PROPERTY(QString email READ get_email WRITE set_email)
-	Q_PROPERTY(QString password READ get_password WRITE set_password)
 
+	DECL_Q_PROPERTIES(
+					(QString, id),
+					(QString, email),
+					(QString, password)
+			);
 public:
-//	User(auto&& ...args):User(QString::fromStdString(args)...)	{}
-
 	User(const User&)=default;
 	User(QStringEx, QStringEx _password="", QStringEx _id="");
 
-	QStringEx get_id() const;
-	User& set_id(const QStringEx &value);
-
-	QStringEx get_email() const;
-	User& set_email(const QStringEx &value);
-
-	QStringEx get_password() const;
-	User& set_password(const QStringEx &value);
+	DECL_GETTERS_AND_SETTERS_OF(
+				(QStringEx, id),
+				(QStringEx, email),
+				(QStringEx, password)
+		);
 
 private :
 	QStringEx id, email, password;

@@ -33,6 +33,6 @@ INCLUDEPATH += . \
 	$$PRJDIR/lib \
 	$$PRJDIR/lib/qhttp \
 	$$PRJDIR/lib/sqlite3 \
-	$$PRJDIR/lib/sqlite_modern_cpp_3_1
+	$$PRJDIR/lib/sqlite_modern_cpp
 #INCLUDEPATH +=  . $$PRJDIR/lib/qhttp $$PRJDIR/lib/http-parser ..
 
