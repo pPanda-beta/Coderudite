@@ -1,24 +1,60 @@
 #include "contesthostserver.h"
 #include "servlet/abstractServlet.hpp"
 #include "servlet/errorservlet.hpp"
+#include "servlet/loginservlet.hpp"
 
 ContestHostServer::ContestHostServer(initializer_list<quint16> portList)
 {
 	start(portList);
 }
 
-map<string, TServerHandler> ContestHostServer::requestMappings =
+
+map<string, TServerHandler> ContestHostServer::requestMappings;
+
+int initWebFramework()
 {
-//	{	"/login", [](auto r, auto s){}	},
-	{	"/404", ErrorServlet("Servlet not found")	}
-};
+	static UserMapper userMapper;
+	static UserService usr=UserService(userMapper);
+	static SessionService ssr=SessionService(SessionMapper());
+
+	ContestHostServer::requestMappings =
+	{
+		{	"/login", LoginServlet(ssr,usr)	},
+		{	"/403", ErrorServlet("Access Denied")	},
+		{	"/404", ErrorServlet("Servlet not found")	}
+	};
+	return 0;
+}
+
+void ContestHostServer::redirectTo(string servlet, QHttpRequest *req, QHttpResponse *resp)
+{
+	try
+	{
+		requestMappings[servlet](req,resp);
+	}
+	catch (...)
+	{
+		requestMappings["/403"](req,resp);
+	}
+
+}
 
 void ContestHostServer::handleRequest(QHttpRequest *req, QHttpResponse *resp)
 {
+//	static int ignore = initWebFramework();
 	auto servletPath = req->url().path().toStdString();
 	auto &&servlet = requestMappings[servletPath];
 	if(servlet)
-		servlet(req,resp);
+	{
+		try
+		{
+			servlet(req,resp);
+		}
+		catch (...)
+		{
+			requestMappings["/403"](req,resp);
+		}
+	}
 	else
 		requestMappings["/404"](req,resp);
 }

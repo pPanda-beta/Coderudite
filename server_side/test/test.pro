@@ -1,7 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    mapperTest
+    mapperTest \
+    serviceTest
 
 
 

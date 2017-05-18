@@ -26,7 +26,7 @@ MOC_DIR      = $$TEMPDIR
 OBJECTS_DIR  = $$TEMPDIR
 RCC_DIR      = $$TEMPDIR
 UI_DIR       = $$TEMPDIR/Ui
-LIBS        += -L$$PRJDIR/xbin
+LIBS        += -L$$PRJDIR/xbin -shared-libgcc
 
 INCLUDEPATH += . \
 	$$PRJDIR/coderudite_ronin	\

@@ -18,7 +18,7 @@ struct User : public QObject
 			);
 public:
 	User(const User&)=default;
-	User(QStringEx, QStringEx _password="", QStringEx _id="");
+	User(QStringEx _email="", QStringEx _password="", QStringEx _id="");
 
 	DECL_GETTERS_AND_SETTERS_OF(
 				(QStringEx, id),

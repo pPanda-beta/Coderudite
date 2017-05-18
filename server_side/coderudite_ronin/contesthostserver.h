@@ -9,6 +9,7 @@ struct ContestHostServer : public AbstractServer
 	void handleRequest(QHttpRequest *, QHttpResponse *);
 
 	static map<string, TServerHandler> requestMappings;
+	static void redirectTo(string servlet, QHttpRequest *req, QHttpResponse *resp);
 };
 
 #endif // CONTESTHOSTSERVER_H

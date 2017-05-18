@@ -33,7 +33,13 @@ SOURCES += main.cpp\
     mapper/usermapper.cpp \
 	model/user.cpp	\
     mapper/qobjecthelper.cpp \
-    model/qstringex.cpp
+    model/qstringex.cpp \
+    service/userservice.cpp \
+    servlet/loginservlet.cpp \
+    servlet/abstractjsonservlet.cpp \
+    mapper/sessionmapper.cpp \
+    model/session.cpp \
+    service/sessionservice.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -55,7 +61,13 @@ HEADERS  += mainwindow.h \
 	model/user.h	\
     mapper/qobjecthelper.h \
     model/qstringex.h \
-    model/bean.hxx
+    model/bean.hxx \
+    service/userservice.h \
+    servlet/loginservlet.hpp \
+    servlet/abstractjsonservlet.hpp \
+    mapper/sessionmapper.h \
+    model/session.h \
+    service/sessionservice.h
 
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser
