@@ -15,7 +15,8 @@ int initWebFramework()
 {
 	static UserMapper userMapper;
 	static UserService usr=UserService(userMapper);
-	static SessionService ssr=SessionService(SessionMapper());
+	static SessionMapper sessionMapper;
+	static SessionService ssr(sessionMapper);
 
 	ContestHostServer::requestMappings =
 	{
@@ -41,7 +42,7 @@ void ContestHostServer::redirectTo(string servlet, QHttpRequest *req, QHttpRespo
 
 void ContestHostServer::handleRequest(QHttpRequest *req, QHttpResponse *resp)
 {
-//	static int ignore = initWebFramework();
+	static int ignore = initWebFramework();
 	auto servletPath = req->url().path().toStdString();
 	auto &&servlet = requestMappings[servletPath];
 	if(servlet)

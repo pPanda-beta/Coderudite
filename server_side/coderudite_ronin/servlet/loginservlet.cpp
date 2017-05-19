@@ -1,5 +1,6 @@
 #include "loginservlet.hpp"
 
+#include <QJsonObject>
 #include "mapper/qobjecthelper.h"
 #include "helpers.hxx"
 
@@ -16,7 +17,11 @@ void LoginServlet::handle_parsed_request_on_end(Session &session, const QJsonObj
 	QObjectHelper::qjson2qobject(trialUserJson, &trialUser);
 	if(userService.login(trialUser))
 	{
-		sessionService.createSession(trialUser);
-		replyWith(resp, "Successfully Logged In"s);
+		Session ssn=sessionService.createSession(trialUser);
+		replyWithJson(resp,QJsonDocument
+		(QJsonObject{
+			{ "message" , "Successfully Logged In"},
+			{ "sessionId", QStringEx(ssn.sid)	}
+		}));
 	}
 }

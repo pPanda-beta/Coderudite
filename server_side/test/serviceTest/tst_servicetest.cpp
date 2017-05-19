@@ -25,6 +25,7 @@ private Q_SLOTS:
 	void testLoginSuccess();
 	void testLoginFail();
 	void testStoreSessionData();
+	void jsonTest1();
 };
 
 ServiceTest::ServiceTest()
@@ -83,6 +84,13 @@ void ServiceTest::testStoreSessionData()
 		throw ;
 	}
 	QCOMPARE(value,"v1"s);
+}
+
+void ServiceTest::jsonTest1()
+{
+	auto jsonDoc=QJsonDocument::fromJson(" {	\"email\": \"aa\",	\"password\": \"pp\" } ");
+	qDebug()<<jsonDoc.isObject();
+
 }
 
 QTEST_APPLESS_MAIN(ServiceTest)

@@ -33,11 +33,10 @@ void AbstractJsonServlet::handle_parsed_request_on_end(Session &session, const Q
 {
 	if(jsonDoc.isObject())
 		this->handle_parsed_request_on_end(session, jsonDoc.object(), resp);
-
-	if(jsonDoc.isArray())
+	else if(jsonDoc.isArray())
 		this->handle_parsed_request_on_end(session, jsonDoc.array(), resp);
-
-	throw "Unknown json type";
+	else
+		throw "Unknown json type";
 }
 
 void AbstractJsonServlet::handle_parsed_request_on_end(Session &, const QJsonObject &, QHttpResponse *) const
