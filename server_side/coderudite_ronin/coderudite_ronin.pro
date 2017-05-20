@@ -69,6 +69,14 @@ HEADERS  += mainwindow.h \
     model/session.h \
     service/sessionservice.h
 
+PRECOMPILED_HEADER +=     model/bean.hxx \
+	constants.hxx \
+	helpers.hxx \
+	$$PRJDIR/sqlite3/sqlite3.h	\
+	$$PRJDIR/sqlite_modern_cpp/sqlite_modern_cpp.h	\
+	$$PRJDIR/sqlite_modern_cpp/collectors.hpp
+
+
 INCLUDEPATH += qhttpserver/src \
 	qhttpserver/http-parser
 

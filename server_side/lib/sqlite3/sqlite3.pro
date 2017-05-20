@@ -9,6 +9,7 @@ QT       -= core gui
 TARGET = sqlite3
 TEMPLATE = lib
 #CONFIG += staticlib
+CONFIG += warn_off
 
 PRJDIR    = ../..
 include($$PRJDIR/commondir.pri)

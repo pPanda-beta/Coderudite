@@ -4,6 +4,8 @@ QT       -= gui
 TARGET    = qhttp
 TEMPLATE  = lib
 
+CONFIG += warn_off
+
 PRJDIR    = ../..
 include($$PRJDIR/commondir.pri)
 
