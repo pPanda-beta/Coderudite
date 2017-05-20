@@ -43,4 +43,8 @@ function Application() {
 	this.tryLoginWith = function (user) {
 		return this.requestJson('/login', user);
 	};
+
+	this.getProblemById = function (idValue) {
+		return this.requestJson('/problem/getId', {id: idValue});
+	};
 }
