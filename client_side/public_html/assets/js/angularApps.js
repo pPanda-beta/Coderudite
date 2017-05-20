@@ -5,6 +5,7 @@
  */
 
 var mainNgApp = helper.makeRoutingModule(['mainNgApp',
-	['login']
+	['login'],
+	['contest']
 ]);
 
