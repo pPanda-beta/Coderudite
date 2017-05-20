@@ -7,4 +7,17 @@
 
 function Application() {
 
+	this.state = {};
+	this.saveState = function () {
+		localStorage.appState = JSON.stringify(this.state);
+	};
+	this.loadState = function () {
+		if (localStorage.appState == undefined) {
+			this.state = {};
+		} else {
+			this.state = JSON.parse(localStorage.appState);
+		}
+	};
+
+
 }
