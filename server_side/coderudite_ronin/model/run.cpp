@@ -2,7 +2,6 @@
 #include <QDebug>
 
 map<string, function<void(Solution &, QProcess&, RunResult &)>> prepare;
-string runsDirPath = appRoot + "/data/tmp"s;
 
 Run::Run(Solution src):m_src(src)
 {
@@ -19,6 +18,7 @@ Run::Run(Solution src):m_src(src)
 
 RunResult Run::execute(string inp, int ms)
 {
+	m_handle.setWorkingDirectory(QString::fromStdString(tmpRoot));
 	if(result.status != RunResult::STATUS::SUCC)
 		return result;
 
@@ -65,27 +65,27 @@ void saveToFile(string filename, Solution &src)
 void setCompilationError(RunResult &result, QProcess &compile)
 {
 	result.status = RunResult::STATUS::CTE;
-		result.m_err<<compile.readAllStandardError().toStdString()<<"\n"<<compile.readAllStandardOutput().toStdString();
+	result.m_err<<compile.readAllStandardError().toStdString()<<"\n"<<compile.readAllStandardOutput().toStdString();
 }
 
 void prepareGcc(Solution &src, QProcess &run_process, RunResult &result)
 {
-	saveToFile(runsDirPath+"/src.c", src);
+	saveToFile(tmpRoot+"/src.c", src);
 
 	QProcess compile;
-	compile.setWorkingDirectory(QString::fromStdString(runsDirPath));
-	compile.start("gcc", QStringList()<<"src.c"<<"-o"<<"src.out");
+	compile.setWorkingDirectory(QString::fromStdString(tmpRoot));
+	compile.start("gcc", QStringList()<<"src.c"<<"-o"<<"src.exe");
 	if(!compile.waitForFinished()  || compile.exitCode() != 0)
 		setCompilationError(result, compile);
 	else
-		run_process.setProgram("./src.out");
+		run_process.setProgram(QString::fromStdString(tmpRoot+"/src.exe"));
 }
 
 void prepareJava(Solution &src, QProcess &run_process, RunResult &result)
 {
-	saveToFile(runsDirPath+"/Main.java",src);
+	saveToFile(tmpRoot+"/Main.java",src);
 	QProcess compile;
-	compile.setWorkingDirectory(QString::fromStdString(runsDirPath));
+	compile.setWorkingDirectory(QString::fromStdString(tmpRoot));
 	compile.start("javac", QStringList()<<"Main.java");
 	if(!compile.waitForFinished()  || compile.exitCode() != 0)
 		setCompilationError(result, compile);

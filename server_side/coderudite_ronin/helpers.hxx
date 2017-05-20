@@ -22,6 +22,21 @@ using namespace std;
 using namespace qhttp;
 using namespace qhttp::server;
 
+
+auto convertCRLF2LF(auto &&str)
+{
+	int i=0, j=0;
+	while( i < str.size()-1)
+	{
+		if(str[i]=='\r' and str[i+1]=='\n')
+			i++;
+		str[j++] = str[i++];
+	}
+	str[j]='\0';
+	return str;
+}
+
+
 template<typename T>
 T deHexFilter(const T &v)
 {

@@ -51,18 +51,18 @@ HEADERS  += mainwindow.h \
     model/run.h \
     dedicatedrunserver.h \
     run_server_view.h \
-    helpers.hxx \
+#    helpers.hxx \
     servlet/abstractServlet.hpp \
     contesthostserver.h \
     servlet/errorservlet.hpp \
 	contesthost_server_view.h \
     mapper/abstractmapper.h \
-    constants.hxx \
+#    constants.hxx \
     mapper/usermapper.h \
 	model/user.h	\
     mapper/qobjecthelper.h \
     model/qstringex.h \
-    model/bean.hxx \
+#    model/bean.hxx \
     service/userservice.h \
     servlet/loginservlet.hpp \
     servlet/abstractjsonservlet.hpp \
@@ -108,6 +108,6 @@ QMAKE_LINK += -shared-libgcc
 
 
 #DEFINES += "APPROOT=\"../../..\""
-DEFINES += "APPROOT=\"$$PRJDIR\""
-
 #ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+DEFINES += "APPROOT=\"$$PRJDIR\""

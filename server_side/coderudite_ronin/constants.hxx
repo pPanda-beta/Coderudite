@@ -10,6 +10,7 @@
 const std::string appRoot = MAC2STR(APPROOT);
 const std::string dataRoot = appRoot + "/data";
 const std::string siteRoot = dataRoot + "/webroot";
+const std::string tmpRoot = dataRoot + "/tmp";
 const std::string userDataRoot = dataRoot + "/user";
 const std::string dbPath = userDataRoot + "/database.db";
 
