@@ -24,4 +24,9 @@ void LoginServlet::handle_parsed_request_on_end(Session &session, const QJsonObj
 			{ "sessionId", QStringEx(ssn.sid)	}
 		}));
 	}
+	else
+		replyWithJson(resp,QJsonDocument
+		(QJsonObject{
+			{ "message" , "Login failed"}
+		}));
 }

@@ -19,5 +19,28 @@ function Application() {
 		}
 	};
 
+	this.state.servers = {
+		cdn: window.location.origin,
+		chost: window.location.protocol + '//' + window.location.hostname + ':' + '4444'
+	};
 
+	this.requestJson = function (servlet, payload) {
+		var jqXhr1 = $.post(this.state.servers.chost + servlet,
+				{json: JSON.stringify(payload)});
+		var oldDone = jqXhr1.done;
+		jqXhr1.onsucess = function (callbackEatsJson) {
+			oldDone(function (data) {
+				try {
+					callbackEatsJson(JSON.parse(data));
+				} catch (e) {
+					console.warn(e);
+				}
+			});
+		};
+		return jqXhr1;
+	};
+
+	this.tryLoginWith = function (user) {
+		return this.requestJson('/login', user);
+	};
 }
