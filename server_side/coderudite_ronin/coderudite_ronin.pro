@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     servlet/abstractjsonservlet.cpp \
     mapper/sessionmapper.cpp \
     model/session.cpp \
-    service/sessionservice.cpp
+    service/sessionservice.cpp \
+    servlet/problemfetchservlet.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -67,7 +68,8 @@ HEADERS  += mainwindow.h \
     servlet/abstractjsonservlet.hpp \
     mapper/sessionmapper.h \
     model/session.h \
-    service/sessionservice.h
+    service/sessionservice.h \
+    servlet/problemfetchservlet.hpp
 
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \

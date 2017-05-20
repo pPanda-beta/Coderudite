@@ -2,6 +2,7 @@
 #include "servlet/abstractServlet.hpp"
 #include "servlet/errorservlet.hpp"
 #include "servlet/loginservlet.hpp"
+#include "servlet/problemfetchservlet.hpp"
 
 ContestHostServer::ContestHostServer(initializer_list<quint16> portList)
 {
@@ -21,6 +22,7 @@ int initWebFramework()
 	ContestHostServer::requestMappings =
 	{
 		{	"/login", LoginServlet(ssr,usr)	},
+		{	"/problem/getId", ProblemFetchServlet(ssr,usr)	},
 		{	"/403", ErrorServlet("Access Denied")	},
 		{	"/404", ErrorServlet("Servlet not found")	}
 	};
