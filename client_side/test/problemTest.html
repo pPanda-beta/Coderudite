@@ -8,6 +8,8 @@ This is the master page
 		<script>
 			var siteroot = '../public_html/';
 			loadScripts(siteroot, externalLibraries);
+			loadjscssfile('../public_html/assets/js//app.js', document.head);
+			loadjscssfile('../public_html/assets/js/boot.js', document.head);
 		</script>
 	</head>
 
@@ -15,9 +17,18 @@ This is the master page
 		<script>
 			var loginTestApp = angular.module('mainNgApp', []);
 		</script>
-		<div ng-app="mainNgApp" ng-controller="loginController">
-			<div ng-include="'../public_html/view/loginView.html'">		</div>
-			<script src="../public_html/controller/loginController.js"></script>
+		<div ng-app="mainNgApp" ng-controller="problemController" ng-init="problem = {
+				name : 'Hello 1',
+				desc : 'Punit ekta baba ',
+				ip_format : 'kkkk64645',
+				op_format : 'bmnbmnbmnbmn',
+				constraints : '0<i<100',
+				sample_ip : 'sdajajdajda',
+				sample_op : 'daksjdlasjd',
+				explanation : 'hocche naa hobe naa'
+			}">
+			<div ng-include="'../public_html/view/problemView.html'">		</div>
+			<script src="../public_html/controller/problemController.js"></script>
 		</div>
 	</body>
 </html>
