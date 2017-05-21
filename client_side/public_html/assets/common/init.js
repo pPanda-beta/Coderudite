@@ -61,6 +61,9 @@ function loadjscssfile(filename, container, isAsync) {
 		"assets/lib/YUI/yahoo-min.js",
 		"assets/lib/YUI/get-min.js",
 
+		"assets/lib/jsPanel/jquery.jspanel.css",
+		"assets/lib/jsPanel/jquery.jspanel-compiled.js",
+
 		"assets/lib/angularJs/angular.js",
 		"assets/lib/angularJs/angular-route.js"
 	];
