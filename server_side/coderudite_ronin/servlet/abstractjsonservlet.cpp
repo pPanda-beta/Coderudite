@@ -12,10 +12,13 @@ AbstractJsonServlet::AbstractJsonServlet(SessionService &s)
 
 }
 
-void AbstractJsonServlet::handle_parsed_request_on_end(QHttpRequest *, map<string, string> requestFields, QHttpResponse *resp) const
+void AbstractJsonServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, string> requestFields, QHttpResponse *resp) const
 {
 	SessionService *sp=(SessionService *)(&sessionService);
 	Session session(sp, requestFields["sessionId"]);
+
+	session.req = req;
+	session.requestFields = requestFields;
 
 	if(requestFields.find("json")==requestFields.end())
 		throw "Not a Json Request";
