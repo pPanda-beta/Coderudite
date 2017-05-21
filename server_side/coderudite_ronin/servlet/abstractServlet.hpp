@@ -14,8 +14,8 @@ using namespace qhttp::server;
 
 struct AbstractServlet
 {
-	void operator()(QHttpRequest *req,  QHttpResponse *resp) ;
-	virtual void handle_parsed_request_on_end(QHttpRequest *, map<string, string> , QHttpResponse *) = 0;
+	void operator()(QHttpRequest *req,  QHttpResponse *resp) const;
+	virtual void handle_parsed_request_on_end(QHttpRequest *, map<string, string> , QHttpResponse *)const = 0;
 };
 
 #endif

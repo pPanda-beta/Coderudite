@@ -11,7 +11,7 @@ LoginServlet::LoginServlet(SessionService &sp, UserService &us)
 
 }
 
-void LoginServlet::handle_parsed_request_on_end(Session &session, const QJsonObject &trialUserJson, QHttpResponse *resp)
+void LoginServlet::handle_parsed_request_on_end(Session &session, const QJsonObject &trialUserJson, QHttpResponse *resp) const
 {
 	User trialUser;
 	QObjectHelper::qjson2qobject(trialUserJson, &trialUser);

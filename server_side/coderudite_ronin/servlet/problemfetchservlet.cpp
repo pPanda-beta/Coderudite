@@ -9,7 +9,7 @@ ProblemFetchServlet::ProblemFetchServlet(SessionService &sp, UserService &us)
 
 }
 
-void ProblemFetchServlet::handle_parsed_request_on_end(Session &, const QJsonObject &reqJson, QHttpResponse *resp)
+void ProblemFetchServlet::handle_parsed_request_on_end(Session &, const QJsonObject &reqJson, QHttpResponse *resp) const
 {
 	replyWithJson(resp,QJsonDocument
 	(QJsonObject{

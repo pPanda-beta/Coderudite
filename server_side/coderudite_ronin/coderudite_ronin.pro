@@ -74,9 +74,9 @@ HEADERS  += mainwindow.h \
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \
 	helpers.hxx \
-	$$PRJDIR/lib/sqlite3/sqlite3.h	\
-	$$PRJDIR/lib/sqlite_modern_cpp/sqlite_modern_cpp.h	\
-	$$PRJDIR/lib/sqlite_modern_cpp/collectors.h
+	$$PRJDIR/sqlite3/sqlite3.h	\
+	$$PRJDIR/sqlite_modern_cpp/sqlite_modern_cpp.h	\
+	$$PRJDIR/sqlite_modern_cpp/collectors.hpp
 
 
 INCLUDEPATH += qhttpserver/src \
