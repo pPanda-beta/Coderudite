@@ -1,61 +1,69 @@
 
-<button id="jspanel-open" type="button" class="btn btn-info btn-sm sample">Open Code Editor</button>
-<script>
-$('#jspanel-open').click(function () {
-		"use strict";
-		$.jsPanel({
-			addClass: {
-				header: false,
-				content: false,
-				footer: false
-			},
-			ajax: false,
-			autoclose: false,
-			bootstrap: false,
-			callback: undefined,
-			content: false,
-			controls: {
-				buttons: true,
-				iconfont: false
-			},
-			draggable: {
-				handle: 'div.jsPanel-hdr, div.jsPanel-ftr',
-				stack: '.jsPanel',
-				opacity: 0.6
-			},
-//		id: function(){
-//			$(this).first().uniqueId()
-//		},
-			load: false,
-			paneltype: false,
-			offset: {
-				top: 0,
-				left: 0
-			},
-			overflow: 'hidden',
-			position: 'auto',
-			removeHeader: false,
-			resizable: {
-				handles: 'e, s, w, se, sw',
-				autoHide: false,
-				minWidth: 250,
-				minHeight: 93
-			},
-			rtl: false,
-			selector: 'body',
-			show: 'fadeIn',
-			size: {
-				width: 400,
-				height: 222
-			},
-			theme: 'light',
-			title: function () {
-				return 'codeEditor';
-			},
-			content: 'Hello WOrlds',
-			toolbarFooter: false,
-			toolbarHeader: false
+<button id="jspanel-open" type="button" class="btn btn-info btn-sm sample">
+	Open Code Editor
+</button>
 
+<script>
+	$('#jspanel-open').click(function () {
+		$('#jspanel-open').hide();
+		$.jsPanel({
+			selector: "#parent1",
+			theme: 'bootstrap-primary',
+			headerTitle: 'Code editor',
+			position: 'left-top 300 230',
+			content: '<div id="subwindow"></div>',
+//			footerToolbar: ftr,
+			callback: function () {
+				$('.jsPanel-ftr', this).css({flexFlow: 'row-reverse'});
+			},
+			onbeforeclose: function () {
+				$("#codeEditor1").appendTo("#codeEditorOriginal");
+				$('#jspanel-open').show();
+			}
 		});
+		$("#codeEditor1").appendTo("#subwindow");
 	});
 </script>
+
+<div id="codeEditorOriginal" style=" display: none ">
+	<div id="codeEditor1">
+
+
+		<script src="assets/lib/ace.js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src="assets/lib/ace.js/src-min/ext-language_tools.js"></script>
+
+		<select ng-model="sol.type" ng-options="m for m in types" ng-change="modeChanged()"></select>
+
+		<pre id="editor" style="border: 1px solid lightgray;	margin: auto;	height: 200px;	width: 80%;    ">
+
+public class Main {
+    public static void main(String args[]){
+        System.out.println("Hello CSE");
+    }
+}
+		</pre>
+
+		<script>
+					var editor = ace.edit("editor");
+					editor.setTheme("ace/theme/eclipse");
+					editor.session.setMode("ace/mode/java");
+					editor.setOptions({
+						enableBasicAutocompletion: true,
+						enableSnippets: true,
+						enableLiveAutocompletion: true
+					});
+		</script>
+		<br/>
+		<button ng-click="submitSolution()"> Submit</button>
+		<br/>
+
+		Output 
+		<pre style="border : 2px solid black; ">{{ result.oup }}</pre><br/>
+
+		Status : <div > {{result.status}}</div>
+
+		Error : 
+		<pre style="border : 2px solid black; ">{{ result.err }}</pre>
+	</div>
+</div>
+
