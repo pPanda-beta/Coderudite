@@ -9,7 +9,7 @@ public:
 	UserMapper userMapper;
 	UserService(const UserMapper &);
 
-	bool login(User &)const;
+	bool login(User &);
 };
 
 #endif // USERSERVICE_H

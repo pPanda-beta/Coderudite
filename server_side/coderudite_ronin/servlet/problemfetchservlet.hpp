@@ -12,7 +12,7 @@ struct ProblemFetchServlet : public AbstractJsonServlet
 	UserService userService;
 	ProblemFetchServlet(SessionService &, UserService &);
 
-	void handle_parsed_request_on_end(Session &, const QJsonObject &, QHttpResponse *)const;
+	void handle_parsed_request_on_end(Session &, const QJsonObject &, QHttpResponse *);
 };
 
 #endif // PROBLEMFETCH_HPP

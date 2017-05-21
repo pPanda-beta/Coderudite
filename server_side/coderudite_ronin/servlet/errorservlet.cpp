@@ -6,7 +6,7 @@ ErrorServlet::ErrorServlet(const string &_reason):reason(_reason)
 {
 }
 
-void ErrorServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, string> reqFields, QHttpResponse *resp) const
+void ErrorServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, string> reqFields, QHttpResponse *resp)
 {
 //	for(auto &t:reqFields)
 //		qDebug()<<t.first.data()<<t.second.data();

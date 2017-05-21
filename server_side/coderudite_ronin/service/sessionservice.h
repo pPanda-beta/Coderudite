@@ -12,9 +12,9 @@ public:
 	SessionMapper sessionMapper;
 	SessionService(SessionMapper _sessionMapper);
 
-	Session createSession(const User& ) const;
-	string getData(string sid, string key) const;
-	void setData(string sid, string key, string value) const;
+	Session createSession(const User& ) ;
+	string getData(string sid, string key) ;
+	void setData(string sid, string key, string value) ;
 };
 
 #endif // SESSIONSERVICE_H

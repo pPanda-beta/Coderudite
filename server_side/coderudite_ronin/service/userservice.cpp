@@ -4,9 +4,9 @@ UserService::UserService(const UserMapper &_mapper):userMapper(_mapper)
 {
 }
 
-bool UserService::login(User &trial_user) const
+bool UserService::login(User &trial_user)
 {
-	UserMapper &&userMapper = static_cast<UserMapper>(this->userMapper);
+//	UserMapper &&userMapper = static_cast<UserMapper>(this->userMapper);
 	try
 	{
 		auto actual_userP=userMapper.getUserByEmail(trial_user.get_email());
