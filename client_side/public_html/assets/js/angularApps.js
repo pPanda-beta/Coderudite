@@ -10,3 +10,5 @@ var mainNgApp = helper.makeRoutingModule(['mainNgApp',
 	['problem']
 ]);
 
+
+var codeEditorApp = angular.module('codeEditorApp', []);

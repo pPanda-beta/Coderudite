@@ -1,0 +1,61 @@
+
+<button id="jspanel-open" type="button" class="btn btn-info btn-sm sample">Open Code Editor</button>
+<script>
+$('#jspanel-open').click(function () {
+		"use strict";
+		$.jsPanel({
+			addClass: {
+				header: false,
+				content: false,
+				footer: false
+			},
+			ajax: false,
+			autoclose: false,
+			bootstrap: false,
+			callback: undefined,
+			content: false,
+			controls: {
+				buttons: true,
+				iconfont: false
+			},
+			draggable: {
+				handle: 'div.jsPanel-hdr, div.jsPanel-ftr',
+				stack: '.jsPanel',
+				opacity: 0.6
+			},
+//		id: function(){
+//			$(this).first().uniqueId()
+//		},
+			load: false,
+			paneltype: false,
+			offset: {
+				top: 0,
+				left: 0
+			},
+			overflow: 'hidden',
+			position: 'auto',
+			removeHeader: false,
+			resizable: {
+				handles: 'e, s, w, se, sw',
+				autoHide: false,
+				minWidth: 250,
+				minHeight: 93
+			},
+			rtl: false,
+			selector: 'body',
+			show: 'fadeIn',
+			size: {
+				width: 400,
+				height: 222
+			},
+			theme: 'light',
+			title: function () {
+				return 'codeEditor';
+			},
+			content: 'Hello WOrlds',
+			toolbarFooter: false,
+			toolbarHeader: false
+
+		});
+	});
+</script>
