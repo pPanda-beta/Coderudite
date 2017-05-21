@@ -10,8 +10,11 @@
 			selector: "#parent1",
 			theme: 'bootstrap-primary',
 			headerTitle: 'Code editor',
-			position: 'left-top 300 230',
+			position: {
+				my : 'center'
+			},
 			content: '<div id="subwindow"></div>',
+			panelSize: "350 500",
 //			footerToolbar: ftr,
 			callback: function () {
 				$('.jsPanel-ftr', this).css({flexFlow: 'row-reverse'});
