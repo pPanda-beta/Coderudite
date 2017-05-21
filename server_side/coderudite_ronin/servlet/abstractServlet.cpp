@@ -3,7 +3,7 @@
 #include "contesthostserver.h"
 
 void
-AbstractServlet::operator()(QHttpRequest *req,  QHttpResponse *resp) const
+AbstractServlet::operator()(QHttpRequest *req,  QHttpResponse *resp)
 {
 	req->collectData(20*1024*1024);
 

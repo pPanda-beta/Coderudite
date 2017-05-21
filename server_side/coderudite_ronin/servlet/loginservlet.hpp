@@ -11,7 +11,7 @@ struct LoginServlet : public AbstractJsonServlet
 	UserService userService;
 	LoginServlet(SessionService &, UserService &);
 
-	void handle_parsed_request_on_end(Session &, const QJsonObject &, QHttpResponse *)const;
+	void handle_parsed_request_on_end(Session &, const QJsonObject &, QHttpResponse *);
 };
 
 #endif // LOGINSERVLET_H

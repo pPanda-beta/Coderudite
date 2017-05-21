@@ -12,7 +12,7 @@ AbstractJsonServlet::AbstractJsonServlet(SessionService &s)
 
 }
 
-void AbstractJsonServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, string> requestFields, QHttpResponse *resp) const
+void AbstractJsonServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, string> requestFields, QHttpResponse *resp)
 {
 	SessionService *sp=(SessionService *)(&sessionService);
 	Session session(sp, requestFields["sessionId"]);
@@ -32,7 +32,7 @@ void AbstractJsonServlet::handle_parsed_request_on_end(QHttpRequest *req, map<st
 	this->handle_parsed_request_on_end(session,jsonDoc,resp);
 }
 
-void AbstractJsonServlet::handle_parsed_request_on_end(Session &session, const QJsonDocument &jsonDoc, QHttpResponse *resp) const
+void AbstractJsonServlet::handle_parsed_request_on_end(Session &session, const QJsonDocument &jsonDoc, QHttpResponse *resp)
 {
 	if(jsonDoc.isObject())
 		this->handle_parsed_request_on_end(session, jsonDoc.object(), resp);
@@ -42,12 +42,12 @@ void AbstractJsonServlet::handle_parsed_request_on_end(Session &session, const Q
 		throw "Unknown json type";
 }
 
-void AbstractJsonServlet::handle_parsed_request_on_end(Session &, const QJsonObject &, QHttpResponse *) const
+void AbstractJsonServlet::handle_parsed_request_on_end(Session &, const QJsonObject &, QHttpResponse *)
 {
 	throw "This servlet does'nt serve json objects";
 }
 
-void AbstractJsonServlet::handle_parsed_request_on_end(Session &, const QJsonArray &, QHttpResponse *) const
+void AbstractJsonServlet::handle_parsed_request_on_end(Session &, const QJsonArray &, QHttpResponse *)
 {
 	throw "This servlet does'nt serve json arrays";
 }
