@@ -2,6 +2,8 @@
 #include "../helpers.hxx"
 #include "contesthostserver.h"
 
+#include <model/qstringex.h>
+
 void
 AbstractServlet::operator()(QHttpRequest *req,  QHttpResponse *resp)
 {
@@ -29,6 +31,11 @@ AbstractServlet::operator()(QHttpRequest *req,  QHttpResponse *resp)
 		{
 			qDebug()<<t;
 			replyWith(resp,"Error : "s + t);
+		}
+		catch(QString e)
+		{
+			qDebug()<<e;
+			replyWith(resp,string("Error : "s + e));
 		}
 		catch(...)
 		{

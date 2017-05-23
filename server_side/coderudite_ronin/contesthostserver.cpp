@@ -2,7 +2,7 @@
 #include "servlet/abstractServlet.hpp"
 #include "servlet/errorservlet.hpp"
 #include "servlet/loginservlet.hpp"
-#include "servlet/problemfetchservlet.hpp"
+#include "servlet/problemservlet.hpp"
 
 ContestHostServer::ContestHostServer(initializer_list<quint16> portList)
 {
@@ -18,11 +18,14 @@ int initWebFramework()
 	static UserService usr(userMapper);
 	static SessionMapper sessionMapper;
 	static SessionService ssr(sessionMapper);
+	static FileService fsr;
+
+	static ProblemServlet problemServlet(ssr, fsr);
 
 	ContestHostServer::requestMappings =
 	{
 		{	"/login", LoginServlet(ssr,usr)	},
-		{	"/problem/getId", ProblemFetchServlet(ssr,usr)	},
+		{	"/problem/getById", problemServlet	},
 		{	"/403", ErrorServlet("Access Denied")	},
 		{	"/404", ErrorServlet("Servlet not found")	}
 	};

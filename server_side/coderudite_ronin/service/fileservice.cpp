@@ -16,6 +16,12 @@ QJsonObject FileService::getProblem(QStringEx pid)
 {
 	QFile problemFile(problemDir+"/"s+pid+".json"s);
 	if(problemFile.open(QFile::ReadOnly))
-		return QJsonDocument::fromJson(problemFile.readAll()).object();
+	{
+		QJsonParseError error;
+		auto &&jsonObject = QJsonDocument::fromJson(problemFile.readAll(), &error).object();
+		if(error.error != QJsonParseError::NoError)
+			throw error.errorString();
+		return jsonObject;
+	}
 	throw "Problem File not found";
 }
