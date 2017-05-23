@@ -7,7 +7,8 @@
 var mainNgApp = helper.makeRoutingModule(['mainNgApp',
 	['login'],
 	['contest'],
-	['problem']
+	['problem'],
+	['registration']
 ]);
 
 
