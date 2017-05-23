@@ -1,6 +1,6 @@
 angular.module('mainNgApp').controller('problemController', function ($scope) {
 
-	$scope.problem = {};
+//	$scope.problem = {};
 
 	app.getProblemById("P001")
 			.onsuccess(function (problem1) {
