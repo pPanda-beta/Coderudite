@@ -38,12 +38,10 @@
 		<select ng-model="sol.type" ng-options="m for m in types" ng-change="modeChanged()"></select>
 
 		<pre id="editor" style="border: 1px solid lightgray;	margin: auto;	height: 200px;	width: 80%;    ">
-
-public class Main {
-    public static void main(String args[]){
-        System.out.println("Hello CSE");
-    }
-}
+		****
+		Please select the
+		preferred Language
+		*******
 		</pre>
 
 		<script>
@@ -55,6 +53,7 @@ public class Main {
 						enableSnippets: true,
 						enableLiveAutocompletion: true
 					});
+				
 		</script>
 		<br/>
 		<button ng-click="submitSolution()"> Submit</button>
