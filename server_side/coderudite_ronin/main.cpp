@@ -16,6 +16,7 @@ void appInit()
 	createPathIfNotExist(siteRoot);
 	createPathIfNotExist(userDataRoot);
 	createPathIfNotExist(tmpRoot);
+	createPathIfNotExist(problemDir);
 
 	try
 	{

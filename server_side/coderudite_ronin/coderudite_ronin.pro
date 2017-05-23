@@ -40,7 +40,8 @@ SOURCES += main.cpp\
     mapper/sessionmapper.cpp \
     model/session.cpp \
     service/sessionservice.cpp \
-    servlet/problemfetchservlet.cpp
+    servlet/problemfetchservlet.cpp \
+    service/fileservice.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -69,7 +70,8 @@ HEADERS  += mainwindow.h \
     mapper/sessionmapper.h \
     model/session.h \
     service/sessionservice.h \
-    servlet/problemfetchservlet.hpp
+    servlet/problemfetchservlet.hpp \
+    service/fileservice.h
 
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \

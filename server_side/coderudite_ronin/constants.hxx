@@ -13,5 +13,6 @@ const std::string siteRoot = dataRoot + "/webroot";
 const std::string tmpRoot = dataRoot + "/tmp";
 const std::string userDataRoot = dataRoot + "/user";
 const std::string dbPath = userDataRoot + "/database.db";
+const std::string problemDir = userDataRoot+"/problems";
 
 #endif // CONSTANTS_HXX
