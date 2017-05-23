@@ -7,18 +7,21 @@
 	$('#jspanel-open').click(function () {
 		$('#jspanel-open').hide();
 		$.jsPanel({
-			selector: "#parent1",
+			closeOnEscape: true,
 			theme: 'bootstrap-primary',
 			headerTitle: 'Code editor',
-			position: {
-				my : 'center'
-			},
+			maximizedMargin: [50, 10, 50, 10, true],
+			dragit: {	containment: [50, 10, 50, 10]	},
+			resizeit: {	containment: [50, 10, 50, 10]},
+//			position: {
+//				my : 'center'
+//			},
 			content: '<div id="subwindow"></div>',
 			panelSize: "350 500",
 //			footerToolbar: ftr,
-			callback: function () {
-				$('.jsPanel-ftr', this).css({flexFlow: 'row-reverse'});
-			},
+//			callback: function () {
+//				$('.jsPanel-ftr', this).css({flexFlow: 'row-reverse'});
+//			},
 			onbeforeclose: function () {
 				$("#codeEditor1").appendTo("#codeEditorOriginal");
 				$('#jspanel-open').show();
