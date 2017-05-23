@@ -28,7 +28,7 @@ function Application() {
 		var jqXhr1 = $.post(this.state.servers.chost + servlet,
 				{json: JSON.stringify(payload)});
 		var oldDone = jqXhr1.done;
-		jqXhr1.onsucess = function (callbackEatsJson) {
+		jqXhr1.onsuccess = function (callbackEatsJson) {
 			oldDone(function (data) {
 				try {
 					callbackEatsJson(JSON.parse(data));
@@ -45,6 +45,30 @@ function Application() {
 	};
 
 	this.getProblemById = function (idValue) {
-		return this.requestJson('/problem/getId', {id: idValue});
+		return this.requestJson('/problem/getById', {id: idValue});
+	};
+
+	this.submitSolution = function (cid, pid, src, type) {
+		return {
+			onsuccess: function (callback) {
+				callback("sid");
+			}
+		};
+	};
+
+	this.getSubmission = function (sid) {
+		return {
+			onsuccess: function (callback) {
+				callback({
+					sid: '',
+					pid: '',
+					pname: '',
+					status: '',
+					error: '',
+					src: '',
+					type: ''
+				});
+			}
+		};
 	};
 }

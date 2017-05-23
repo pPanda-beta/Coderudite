@@ -5,7 +5,7 @@ angular.module('mainNgApp').controller('loginController', function ($scope) {
 		login: function () {
 //			console.log(this);
 			app.tryLoginWith($scope.trialUser)
-					.onsucess(function (d) {
+					.onsuccess(function (d) {
 						console.log(d);
 						$scope.message = d.message;
 						$scope.$apply();
