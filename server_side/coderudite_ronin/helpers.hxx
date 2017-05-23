@@ -78,6 +78,16 @@ map<string,string> parsePOST(auto &&req)
 }
 
 
+void inline writeDataOn(QHttpResponse *resp, const QByteArray &doc)
+{
+	resp->end(doc);
+}
+
+void inline writeDataOn(QHttpResponse *resp, auto &&doc)
+{
+	resp->end(QByteArray(doc.data()));
+}
+
 template<typename T>
 void replyWith(QHttpResponse *resp, const T& doc, TStatusCode code)
 {
@@ -85,7 +95,7 @@ void replyWith(QHttpResponse *resp, const T& doc, TStatusCode code)
 	resp->addHeader("Access-Control-Allow-Origin"," * ");
 	resp->addHeader("Access-Control-Allow-Headers","GET,POST,PUT");
 	resp->setStatusCode(code);
-	resp->end(QByteArray(doc.data()));
+	writeDataOn(resp,doc);
 }
 
 template<typename T>
