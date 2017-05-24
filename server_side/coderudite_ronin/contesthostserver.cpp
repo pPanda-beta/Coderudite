@@ -3,6 +3,7 @@
 #include "servlet/errorservlet.hpp"
 #include "servlet/loginservlet.hpp"
 #include "servlet/problemservlet.hpp"
+#include "servlet/sseservlet.hpp"
 
 ContestHostServer::ContestHostServer(initializer_list<quint16> portList)
 {
@@ -19,6 +20,7 @@ int initWebFramework()
 	static SessionMapper sessionMapper;
 	static SessionService ssr(sessionMapper);
 	static FileService fsr;
+	static EventService esr;
 
 	static ProblemServlet problemServlet(ssr, fsr);
 
@@ -26,6 +28,7 @@ int initWebFramework()
 	{
 		{	"/login", LoginServlet(ssr,usr)	},
 		{	"/problem/getById", problemServlet	},
+		{	"/events", SSEServlet(esr)	},
 		{	"/403", ErrorServlet("Access Denied")	},
 		{	"/404", ErrorServlet("Servlet not found")	}
 	};

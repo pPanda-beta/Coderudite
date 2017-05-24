@@ -42,7 +42,8 @@ SOURCES += main.cpp\
     service/sessionservice.cpp \
     service/fileservice.cpp \
     servlet/problemservlet.cpp \
-    service/eventservice.cpp
+    service/eventservice.cpp \
+    servlet/sseservlet.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -73,7 +74,8 @@ HEADERS  += mainwindow.h \
     service/sessionservice.h \
     service/fileservice.h \
     servlet/problemservlet.hpp \
-    service/eventservice.h
+    service/eventservice.h \
+    servlet/sseservlet.hpp
 
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \
