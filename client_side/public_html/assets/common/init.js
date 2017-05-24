@@ -70,6 +70,7 @@ function loadjscssfile(filename, container, isAsync) {
 
 
 	var myJsFiles = [
+		"assets/js/SSEService.js",
 		"assets/js/app.js",
 		"assets/js/boot.js",
 		"assets/js/helper.js",
