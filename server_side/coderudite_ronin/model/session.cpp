@@ -5,7 +5,8 @@ Session::Session(SessionService *_sp, std::string _sid)
 	: sessionServiceP(_sp),
 	  sid(_sid)
 {
-
+	if(sessionServiceP)
+		userid = sessionServiceP->getUserIdFor(sid);
 }
 
 Session::key_binder Session::operator[](const string &key) const

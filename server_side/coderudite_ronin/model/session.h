@@ -11,6 +11,7 @@ struct Session
 {
 	qhttp::server::QHttpRequest *req;
 	std::map<string,string> requestFields;
+	QStringEx userid;
 	SessionService *sessionServiceP;
 	std::string sid;
 	Session(SessionService *_sp, std::string _sid);

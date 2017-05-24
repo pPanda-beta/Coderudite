@@ -1,4 +1,5 @@
 #include "sessionservice.h"
+#include <QDebug>
 
 SessionService::SessionService(SessionMapper _sessionMapper)
 	: sessionMapper(_sessionMapper)
@@ -11,6 +12,19 @@ Session SessionService::createSession(const User &user)
 //	string sid = static_cast<SessionMapper>(sessionMapper).createSessionIdFor(user);
 	string sid = sessionMapper.createSessionIdFor(user);
 	return Session((SessionService *)this, sid);
+}
+
+QStringEx SessionService::getUserIdFor(const string& sid)
+{
+	try
+	{
+		return sessionMapper.getUserIdFor(sid);
+	}
+	catch (sqlite_exception e)
+	{
+//		qDebug()<<__FILE__<<__LINE__<<e.what()<<e.get_code()<<e.get_sql().data()<<"\n";
+		return "";
+	}
 }
 
 string SessionService::getData(string sid, string key)

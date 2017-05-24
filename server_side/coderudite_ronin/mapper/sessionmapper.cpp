@@ -22,6 +22,12 @@ WHERE userid = ? ;
 )sql1";
 
 
+const char* selectUserIdFromSessionIdSql = R"sql1(
+SELECT userid FROM session
+WHERE sid = ? ;
+)sql1";
+
+
 
 SessionMapper::SessionMapper()
 {
@@ -38,6 +44,15 @@ string SessionMapper::createSessionIdFor(const User &user)
 	db<<"SELECT sid FROM session LIMIT "+to_string(last_row_index)+",1 ;"
 	>>sid;
 	return to_string(sid);
+}
+
+string SessionMapper::getUserIdFor(const string &sid)
+{
+	string userid;
+	db<<selectUserIdFromSessionIdSql
+	 <<sid
+	>>userid;
+	return userid;
 }
 
 string SessionMapper::getValueOf(string sid, string key)

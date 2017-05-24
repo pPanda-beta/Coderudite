@@ -24,8 +24,8 @@ private Q_SLOTS:
 	void cleanupTestCase();
 	void testLoginSuccess();
 	void testLoginFail();
+	void testUserIdOfValidSession();
 	void testStoreSessionData();
-	void jsonTest1();
 };
 
 ServiceTest::ServiceTest()
@@ -70,6 +70,11 @@ void ServiceTest::testLoginFail()
 	QVERIFY(not userServiceP->login(badUser));
 }
 
+void ServiceTest::testUserIdOfValidSession()
+{
+	QCOMPARE(mrJoesSession.userid, mrJoe.get_id());
+}
+
 void ServiceTest::testStoreSessionData()
 {
 	string value="Hi";
@@ -84,13 +89,6 @@ void ServiceTest::testStoreSessionData()
 		throw ;
 	}
 	QCOMPARE(value,"v1"s);
-}
-
-void ServiceTest::jsonTest1()
-{
-	auto jsonDoc=QJsonDocument::fromJson(" {	\"email\": \"aa\",	\"password\": \"pp\" } ");
-	qDebug()<<jsonDoc.isObject();
-
 }
 
 QTEST_APPLESS_MAIN(ServiceTest)

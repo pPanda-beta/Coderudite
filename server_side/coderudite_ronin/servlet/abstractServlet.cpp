@@ -37,6 +37,11 @@ AbstractServlet::operator()(QHttpRequest *req,  QHttpResponse *resp)
 			qDebug()<<e;
 			replyWith(resp,string("Error : "s + e));
 		}
+		catch (sqlite::sqlite_exception e)
+		{
+			qDebug()<<e.what()<<e.get_code()<<e.get_sql().data();
+			replyWith(resp,"Error 500: internal server error"s);
+		}
 		catch(...)
 		{
 			qDebug()<<"Unknown exception";

@@ -13,6 +13,7 @@ public:
 	SessionService(SessionMapper _sessionMapper);
 
 	Session createSession(const User& ) ;
+	QStringEx getUserIdFor(const string &);
 	string getData(string sid, string key) ;
 	void setData(string sid, string key, string value) ;
 };

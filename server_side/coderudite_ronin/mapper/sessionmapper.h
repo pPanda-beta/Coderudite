@@ -12,6 +12,7 @@ struct SessionMapper : public AbstractMapper
 	SessionMapper();
 
 	string createSessionIdFor(const User&);
+	string getUserIdFor(const string &);
 	string getValueOf(string sid, string key) ;
 	void setValueOf(string sid, string key, string value) ;
 };
