@@ -72,18 +72,26 @@ function Application() {
 			}
 		}
 	}
-	this.getSubmission = function (sid) {
+	this.getSubmission = function (sid1) {
 		return {
 			onsuccess: function (callback) {
 				callback({
-					sid: '',
-					pid: '',
-					pname: '',
-					status: '',
-					error: '',
-					src: '',
-					type: ''
+					sid: 'S001',
+					pid: 'P001',
+					pname: 'Palash\'s Party ' + sid1,
+					status: 'SUCC',
+					error: 'N/A',
+					src: 'C++',
+					type: 'Easy'
 				});
+			}
+		};
+	};
+
+	this.getMySubmissionIds = function () {
+		return {
+			onsuccess: function (callback) {
+				callback(["S001", "Punit", "S001"]);
 			}
 		};
 	};
