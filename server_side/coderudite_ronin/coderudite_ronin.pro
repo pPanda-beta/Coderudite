@@ -46,7 +46,8 @@ SOURCES += main.cpp\
     servlet/sseservlet.cpp \
     model/submission.cpp \
     mapper/submissionmapper.cpp \
-    service/submissionservice.cpp
+    service/submissionservice.cpp \
+    servlet/submissionservlet.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -81,7 +82,8 @@ HEADERS  += mainwindow.h \
     servlet/sseservlet.hpp \
     model/submission.h \
     mapper/submissionmapper.h \
-    service/submissionservice.h
+    service/submissionservice.h \
+    servlet/submissionservlet.hpp
 
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \

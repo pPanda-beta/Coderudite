@@ -5,6 +5,10 @@
 #include "servlet/problemservlet.hpp"
 #include "servlet/sseservlet.hpp"
 
+#include <service/submissionservice.h>
+
+#include <servlet/submissionservlet.hpp>
+
 ContestHostServer::ContestHostServer(initializer_list<quint16> portList)
 {
 	start(portList);
@@ -21,14 +25,21 @@ int initWebFramework()
 	static SessionService ssr(sessionMapper);
 	static FileService fsr;
 	static EventService esr;
+	static SubmissionMapper submissionMapper;
+	static SubmissionService sbsr(submissionMapper);
 
 	static ProblemServlet problemServlet(ssr, fsr);
+	static SubmissionServlet submissionServlet(ssr, sbsr);
 
 	ContestHostServer::requestMappings =
 	{
 		{	"/login", LoginServlet(ssr,usr)	},
 		{	"/problem/getById", problemServlet	},
 		{	"/events", SSEServlet(esr)	},
+		{	"/events", submissionServlet	},
+		{	"/submission/getById", submissionServlet	},
+		{	"/submission/getAllIds", submissionServlet	},
+		{	"/submission/submit", submissionServlet	},
 		{	"/403", ErrorServlet("Access Denied")	},
 		{	"/404", ErrorServlet("Servlet not found")	}
 	};
