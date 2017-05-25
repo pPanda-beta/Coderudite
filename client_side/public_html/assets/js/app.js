@@ -83,7 +83,7 @@ function Application() {
 					error: 'N/A',
 					src: '#include........',
 					lang: 'C++',
-					type: 'Easy'
+					difficulty: 'Easy'
 				});
 			}
 		};
