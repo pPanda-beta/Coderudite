@@ -72,6 +72,26 @@ function Application() {
 			}
 		}
 	}
+	this.getProblems = function () {
+		var problem1 = {
+			id: "P001",
+			name: 'Hello 1',
+			desc: 'Punit ekta baba ',
+			ip_format: 'kkkk64645',
+			op_format: 'bmnbmnbmnbmn',
+			constraints: '0<i<100',
+			sample_ip: 'sdajajdajda',
+			sample_op: 'daksjdlasjd',
+			explanation: 'hocche naa hobe naa'
+		};
+		return {
+			onsuccess: function (callback) {
+				callback([problem1, problem1, problem1]);
+			}
+
+		};
+
+	};
 	this.getSubmission = function (sid1) {
 		return {
 			onsuccess: function (callback) {
@@ -96,4 +116,6 @@ function Application() {
 			}
 		};
 	};
+
+
 }
