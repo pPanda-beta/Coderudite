@@ -79,9 +79,10 @@ function Application() {
 					sid: 'S001',
 					pid: 'P001',
 					pname: 'Palash\'s Party ' + sid1,
-					status: 'SUCC',
+					status: 'ERR',
 					error: 'N/A',
-					src: 'C++',
+					src: '#include........',
+					lang: 'C++',
 					type: 'Easy'
 				});
 			}
@@ -91,7 +92,7 @@ function Application() {
 	this.getMySubmissionIds = function () {
 		return {
 			onsuccess: function (callback) {
-				callback(["S001", "Punit", "S001"]);
+				callback(["S001", "Punit", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001"]);
 			}
 		};
 	};

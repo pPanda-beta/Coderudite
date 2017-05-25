@@ -31,4 +31,16 @@ angular.module('mainNgApp').controller('submissionController', function ($scope)
 //		alert(JSON.stringify($scope.mysubmissions));
 //		$scope.$apply();
 //	};
+	$scope.selected = {};
+	$scope.displayCode = function (src) {
+		//TODO : set the spource
+		if ($scope.selected.src != src) {
+			$scope.selected.src = src;
+			$("#submissionpanel").show();
+
+//			$("#submissionpanel").toggle();
+		} else {
+			$("#submissionpanel").toggle();
+		}
+	}
 });
