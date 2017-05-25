@@ -12,23 +12,25 @@ class Submission : public QObject
 	DECL_Q_PROPERTIES(
 			(QString, sid),
 			(QString, pname),
+			(QString, status),	// CTE/RTE/...
 			(QString, error),
 			(QString, src),
 			(QString, lang),
-			(QString, type),
+			(QString, difficulty),
 			(QString, uid),
 			(QString, pid)
 			);
-	QStringEx sid, pname, error, src, lang, type, uid, pid;
+	QStringEx sid, pname, status, error, src, lang, difficulty, uid, pid;
 public:
 
 	DECL_GETTERS_AND_SETTERS_OF(
 				(QStringEx, sid),
 				(QStringEx, pname),
+				(QStringEx, status),
 				(QStringEx, error),
 				(QStringEx, src),
 				(QStringEx, lang),
-				(QStringEx, type),
+				(QStringEx, difficulty),
 				(QStringEx, uid),
 				(QStringEx, pid)
 				);
