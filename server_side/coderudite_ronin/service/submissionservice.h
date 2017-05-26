@@ -14,6 +14,7 @@ public:
 	void submit(const string& userid, Submission &submission);
 	QJsonArray getSubmissionIdsOf(const string& userid);
 	QJsonObject getSubmissionById(const string &sid);
+	void updateSubmissionDetails(const Submission &submission);
 };
 
 #endif // SUBMISSIONSERVICE_H

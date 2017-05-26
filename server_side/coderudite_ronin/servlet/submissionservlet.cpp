@@ -16,7 +16,7 @@ SubmissionServlet::SubmissionServlet(SessionService &_sp, FileService &_fp, Subm
 
 }
 
-QJsonObject judge(Submission &submission, FileService &fileService)
+QJsonObject judge(Submission &submission, FileService &fileService, SubmissionService &submissionService)
 {
 	auto inputData = fileService.getContentsOfFile(problemDir+"/"s+submission.get_pid().toStdString()+".input"s);
 	auto outputData = fileService.getContentsOfFile(problemDir+"/"s+submission.get_pid().toStdString()+".output"s);
@@ -29,8 +29,8 @@ QJsonObject judge(Submission &submission, FileService &fileService)
 	string output = result.m_oup.str()+"";
 	if(result.status == RunResult::SUCC)
 	{
-		convertCRLF2LF(output);
-		convertCRLF2LF(outputData);
+//		convertCRLF2LF(output);
+//		convertCRLF2LF(outputData);
 		if(output != outputData.toStdString())
 		{
 			result.status = RunResult::ERR;
@@ -44,6 +44,10 @@ QJsonObject judge(Submission &submission, FileService &fileService)
 		{ "src", result.m_src.getSource().data() },
 		{ "error", result.m_err.str().data() }
 	};
+
+	submission.set_status(statusToString[result.status])
+			.set_error(result.m_err.str());
+	submissionService.updateSubmissionDetails(submission);
 
 	return resultJSON;
 }
@@ -66,8 +70,8 @@ void SubmissionServlet::handle_parsed_request_on_end(Session &session, const QJs
 		QObjectHelper::qjson2qobject(submissionJson, &submission);
 		submissionService.submit(session.userid, submission);
 
-		reply = (QJsonDocument) judge(submission, fileService);
-		reply = QJsonDocument::fromJson("{ \"message\" : \" successfully submitted\" }");
+		reply = (QJsonDocument) judge(submission, fileService, submissionService);
+//		reply = QJsonDocument::fromJson("{ \"message\" : \" successfully submitted\" }");
 	}
 	replyWithJson(resp,reply);
 }

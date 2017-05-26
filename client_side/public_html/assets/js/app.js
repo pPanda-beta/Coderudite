@@ -59,12 +59,8 @@ function Application() {
 		return this.requestJson('/problem/getById', {id: idValue});
 	};
 
-	this.submitSolution = function (cid, pid, src, type) {
-		return {
-			onsuccess: function (callback) {
-				callback("sid");
-			}
-		};
+	this.submitSolution = function (pid1, src1, type) {
+		return this.requestJson('/submission/submit', {pid: pid1, src: src1, lang: type});
 	};
 
 	this.registerUser = function (trialUser) {

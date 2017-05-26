@@ -1,5 +1,5 @@
-<script src="lib/c3/c3.min.js"></script>
-<script src="lib/d3/d3.min.js"></script>
+<!--<script src="lib/c3/c3.min.js"></script>
+<script src="lib/d3/d3.min.js"></script>-->
 
 <style>
 	table, th , td {
@@ -13,6 +13,10 @@
 	table tr:nth-child(even) {
 		background-color: #ffffff;
 	}
+
+	/*	*{
+			font-size: medium;
+		}*/
 </style>
 
 
@@ -48,34 +52,39 @@
 						</div>
 					</a>
 				</td>
-				<td><a  data-toggle= "modal" data-target= "#submissionpanel" ng-click="displayCode(submission.pname)">{{submission.lang}}</a></td>
+				<td>
+					<a  data-toggle= "modal" data-target= "#submissionpanel"  ng-click="displayCode(submission)">
+						{{submission.lang}}   [Click here to see]
+					</a>
+				</td>
 				<td>{{submission.difficulty}}</td>
+
 			</tr>
 		</table>
 		<div class="modal fade" id="submissionpanel" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h3 class="modal-title">Submitted Code:{{submission.lang}}</h3>
+						<h3 class="modal-title">Submitted Code: {{selected.lang}}</h3>
 					</div>
 					<div class="modal-body">
-						{{submission.src}}
+						<pre>{{selected.src}}</pre>
+
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">Edit</button>
+						<!--<button type="button" class="btn btn-primary">Edit</button>-->
 						<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!--{{selected.src}}-->
 
 		<!--{{ submissions | json }}-->
 	</div>
-	<div id="bar-chart-6">Submissions vs Day</div>
-</div>
-<script>
+	<!--	<div id="bar-chart-6">Submissions vs Day</div>
+		</div>
+		<script>
  var c3ChartDefaults = $().c3ChartDefaults();
 
   var chartUrls = [
@@ -119,4 +128,4 @@
   };
   groupedVerticalBarChartConfig.color = groupedColors;
   var groupedVerticalBarChart = c3.generate(groupedVerticalBarChartConfig);
-</script>
+	</script>-->

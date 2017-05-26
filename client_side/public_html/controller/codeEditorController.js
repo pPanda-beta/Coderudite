@@ -33,5 +33,10 @@ angular.module('mainNgApp').controller('codeEditorController', function ($scope)
 	$scope.submitSolution = function () {
 		$scope.sol.src = editor.getValue();
 		console.log($scope.sol);
+		app.submitSolution(app.getCurrentProblemId(), $scope.sol.src, $scope.sol.type)
+				.onsuccess(function (d) {
+					$scope.result = d;
+					$scope.$apply();
+				});
 	};
 });

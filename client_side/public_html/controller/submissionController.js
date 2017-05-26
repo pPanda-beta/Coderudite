@@ -32,10 +32,13 @@ angular.module('mainNgApp').controller('submissionController', function ($scope)
 //		$scope.$apply();
 //	};
 	$scope.selected = {};
-	$scope.displayCode = function (src) {
+	$scope.displayCode = function (sub) {
 		//TODO : set the spource
-		if ($scope.selected.src != src) {
-			$scope.selected.src = src;
+		console.log(sub);
+		if ($scope.selected.src !== sub.src) {
+			$scope.selected = sub;
+//			$scope.selected.src = sub.src;
+//			$scope.selected.lang = sub.lang;
 			$("#submissionpanel").show();
 
 //			$("#submissionpanel").toggle();

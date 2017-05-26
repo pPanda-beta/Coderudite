@@ -14,6 +14,7 @@ public:
 	bool insertSubmisssion(Submission &);
 	shared_ptr<Submission> getSubmissionById(string sid);
 	list<string> getSubmissionIdsOfUser(string uid);
+	void update(const Submission &submission);
 };
 
 #endif // SUBMISSIONMAPPER_H

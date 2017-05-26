@@ -63,3 +63,13 @@ list<string> SubmissionMapper::getSubmissionIdsOfUser(string uid)
 	 <<uid
 	>>collect<string>::as<list,string>();
 }
+
+void SubmissionMapper::update(const Submission &submission)
+{
+	db<<"UPDATE submission "
+		"WHERE sid = ? "
+		"SET status = ? , error = ? ;"
+	 <<submission.get_sid()
+	<<submission.get_status()
+	<<submission.get_error();
+}

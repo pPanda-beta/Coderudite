@@ -32,3 +32,8 @@ QJsonObject SubmissionService::getSubmissionById(const string &sid)
 	auto submsnP = submissionMapper.getSubmissionById(sid);
 	return QObjectHelper::qobject2qjson(submsnP.get());
 }
+
+void SubmissionService::updateSubmissionDetails(const Submission &submission)
+{
+	submissionMapper.update(submission);
+}
