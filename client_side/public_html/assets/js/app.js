@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -46,6 +46,15 @@ function Application() {
 		return this.requestJson('/login', user);
 	};
 
+	this.setCurrentProblemId = function (pid) {
+		app.state.currentPid = pid;
+		app.saveState();
+	};
+
+	this.getCurrentProblemId = function () {
+		return app.state.currentPid;
+	};
+
 	this.getProblemById = function (idValue) {
 		return this.requestJson('/problem/getById', {id: idValue});
 	};
@@ -76,25 +85,13 @@ function Application() {
 	};
 
 	this.getProblems = function () {
-		var problem1 = {
-			id: "P001",
-			name: 'Hello 1',
-			desc: 'Punit ekta baba ',
-			ip_format: 'kkkk64645',
-			op_format: 'bmnbmnbmnbmn',
-			constraints: '0<i<100',
-			sample_ip: 'sdajajdajda',
-			sample_op: 'daksjdlasjd',
-			explanation: 'hocche naa hobe naa'
-		};
 		return {
 			onsuccess: function (callback) {
-				callback([problem1, problem1, problem1]);
+				callback([{id: "P001"}, {id: "P002"}, {id: "P003"}]);
 			}
-
 		};
-
 	};
+
 	this.getSubmission = function (sid1) {
 		return this.requestJson('/submission/getById', {sid: sid1});
 	};
