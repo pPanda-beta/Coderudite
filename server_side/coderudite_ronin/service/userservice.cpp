@@ -21,3 +21,8 @@ bool UserService::login(User &trial_user)
 	}
 	return false;
 }
+
+bool UserService::register_user(User &user)
+{
+	return userMapper.insertUser(user);
+}

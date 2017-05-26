@@ -7,6 +7,7 @@
 
 #include <service/submissionservice.h>
 
+#include <servlet/registrationservlet.hpp>
 #include <servlet/submissionservlet.hpp>
 
 ContestHostServer::ContestHostServer(initializer_list<quint16> portList)
@@ -34,6 +35,7 @@ int initWebFramework()
 	ContestHostServer::requestMappings =
 	{
 		{	"/login", LoginServlet(ssr,usr)	},
+		{	"/register", RegistrationServlet(ssr,usr)	},
 		{	"/problem/getById", problemServlet	},
 		{	"/events", SSEServlet(esr)	},
 		{	"/events", submissionServlet	},

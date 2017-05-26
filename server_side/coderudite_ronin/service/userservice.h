@@ -10,6 +10,7 @@ public:
 	UserService(const UserMapper &);
 
 	bool login(User &);
+	bool register_user(User &);
 };
 
 #endif // USERSERVICE_H
