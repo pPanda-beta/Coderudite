@@ -14,4 +14,9 @@ angular.module('mainNgApp').controller('loginController', function ($scope) {
 					});
 		}
 	};
+
+	if (app.state.sessionId !== undefined) {
+		$("#loginLink").hide();
+	}
+
 });
