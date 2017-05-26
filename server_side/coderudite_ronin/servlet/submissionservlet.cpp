@@ -29,6 +29,8 @@ void SubmissionServlet::handle_parsed_request_on_end(Session &session, const QJs
 		Submission submission;
 		QObjectHelper::qjson2qobject(submissionJson, &submission);
 		submissionService.submit(session.userid, submission);
+
+
 		reply = QJsonDocument::fromJson("{ \"message\" : \" successfully submitted\" }");
 	}
 	replyWithJson(resp,reply);

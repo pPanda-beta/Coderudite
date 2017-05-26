@@ -10,7 +10,18 @@ FileService::FileService()
 
 }
 
+QByteArray FileService::getContentsOfFile(QStringEx name)
+{
+	QFile file(name);
+	if(file.open(QFile::ReadOnly))
+	{
+		return file.readAll();
+	}
+	throw "File not found";
+}
+
 using namespace std;
+
 
 QJsonObject FileService::getProblem(QStringEx pid)
 {

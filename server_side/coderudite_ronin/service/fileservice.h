@@ -9,6 +9,7 @@ class FileService
 public:
 	FileService();
 
+	QByteArray getContentsOfFile(QStringEx);
 	QJsonObject getProblem(QStringEx);
 };
 
