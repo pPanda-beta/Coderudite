@@ -1,3 +1,6 @@
+<script src="lib/c3/c3.min.js"></script>
+<script src="lib/d3/d3.min.js"></script>
+
 <style>
 	table, th , td {
 		border: 1px solid grey;
@@ -70,10 +73,50 @@
 
 		<!--{{ submissions | json }}-->
 	</div>
+	<div id="bar-chart-6">Submissions vs Day</div>
 </div>
 <script>
-//	$('#codeviewer').click(function(){
-//		alert("hello");
-//		$("#submissionpanel").toggle();
-//	});
+ var c3ChartDefaults = $().c3ChartDefaults();
+
+  var chartUrls = [
+    'https://www.gogole.com',
+    'https://www.yahoo.com',
+    'https://www.bing.com/',
+    'https://duckduckgo.com/'
+  ];
+  var categories = ['No of Successful Submissions', 'Total Submissions'];
+  var columnsData = [
+    ['data1', 56, 24]
+  ];
+
+  var groupedcCategories = ['Day1'];
+  var groupedColumnsData = [
+    ['No of Successful Submissions', 1],
+    ['Total Submissions', 3]
+  ];
+  var groupedColors = {
+    pattern: [
+      $.pfPaletteColors.red,
+      $.pfPaletteColors.green
+    ]
+  };
+
+  var groupedVerticalBarChartConfig = $().c3ChartDefaults().getDefaultGroupedBarConfig();
+  groupedVerticalBarChartConfig.bindto = '#bar-chart-6';
+  groupedVerticalBarChartConfig.axis = {
+    x: {
+      categories: groupedcCategories,
+      type: 'category'
+    }
+  };
+  groupedVerticalBarChartConfig.data = {
+    type: 'bar',
+    columns: groupedColumnsData,
+    // optional drilldown behavior
+    onclick: function (d, element) {
+      window.location = chartUrls[d.index];
+    }
+  };
+  groupedVerticalBarChartConfig.color = groupedColors;
+  var groupedVerticalBarChart = c3.generate(groupedVerticalBarChartConfig);
 </script>
