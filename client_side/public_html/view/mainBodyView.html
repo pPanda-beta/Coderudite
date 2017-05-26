@@ -1,6 +1,10 @@
 
-<div>Welcome </div>
-<a id="loginLink" href="#login">Login</a>
+<!--<div>Welcome </div>-->
+
+<div ng-if="app.state.sessionId">
+	<a id="loginLink" href="#login">Login</a>
+</div>
+
 
 <div ng-app="mainNgApp">
 	<div ng-view> This is bad</div>
