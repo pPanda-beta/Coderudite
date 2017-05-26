@@ -4,8 +4,9 @@
 #include <QJsonArray>
 #include "../mapper/qobjecthelper.h"
 
-SubmissionServlet::SubmissionServlet(SessionService &_sp, SubmissionService &sbsr)
+SubmissionServlet::SubmissionServlet(SessionService &_sp, FileService &_fp, SubmissionService &sbsr)
 	: AbstractJsonServlet (_sp),
+	  fileService(_fp),
 	  submissionService(sbsr)
 {
 

@@ -29,7 +29,7 @@ int initWebFramework()
 	static SubmissionService sbsr(submissionMapper);
 
 	static ProblemServlet problemServlet(ssr, fsr);
-	static SubmissionServlet submissionServlet(ssr, sbsr);
+	static SubmissionServlet submissionServlet(ssr, fsr, sbsr);
 
 	ContestHostServer::requestMappings =
 	{
