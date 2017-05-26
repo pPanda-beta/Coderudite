@@ -26,7 +26,7 @@ function Application() {
 
 	this.requestJson = function (servlet, payload) {
 		var jqXhr1 = $.post(this.state.servers.chost + servlet,
-				{json: JSON.stringify(payload)});
+				{sessionId: app.state.sessionId, json: JSON.stringify(payload)});
 		var oldDone = jqXhr1.done;
 		jqXhr1.onsuccess = function (callbackEatsJson) {
 			oldDone(function (data) {
@@ -34,6 +34,8 @@ function Application() {
 					callbackEatsJson(JSON.parse(data));
 				} catch (e) {
 					console.warn(e);
+					console.log(servlet);
+					console.log(payload);
 				}
 			});
 		};
@@ -70,8 +72,9 @@ function Application() {
 					status: "ERROR"
 				});
 			}
-		}
-	}
+		};
+	};
+
 	this.getProblems = function () {
 		var problem1 = {
 			id: "P001",
@@ -93,23 +96,11 @@ function Application() {
 
 	};
 	this.getSubmission = function (sid1) {
-		return {
-			onsuccess: function (callback) {
-				callback({
-					sid: 'S001',
-					pid: 'P001',
-					pname: 'Palash\'s Party ' + sid1,
-					status: 'ERR',
-					error: 'N/A',
-					src: '#include........',
-					lang: 'C++',
-					difficulty: 'Easy'
-				});
-			}
-		};
+		return this.requestJson('/submission/getById', {sid: sid1});
 	};
 
 	this.getMySubmissionIds = function () {
+		return this.requestJson('/submission/getAllIds', {});
 		return {
 			onsuccess: function (callback) {
 				callback(["S001", "Punit", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001"]);

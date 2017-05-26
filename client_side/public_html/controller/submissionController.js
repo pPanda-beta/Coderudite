@@ -1,20 +1,20 @@
 angular.module('mainNgApp').controller('submissionController', function ($scope) {
 
 	$scope.submissions = [];
-	app.getSubmission("S001")
-			.onsuccess(function (submission1) {
-				$scope.submission = submission1;
-//				$scope.$apply();
-
-
-			});
+//	app.getSubmission("S001")
+//			.onsuccess(function (submission1) {
+//				$scope.submission = submission1;
+////				$scope.$apply();
+//
+//
+//			});
 	app.getMySubmissionIds()
 			.onsuccess(function (subIds) {
 				subIds.forEach(function (subId) {
 					app.getSubmission(subId)
 							.onsuccess(function (submission1) {
 								$scope.submissions.push(submission1);
-//								$scope.$apply();
+								$scope.$apply();
 							});
 				});
 			});
