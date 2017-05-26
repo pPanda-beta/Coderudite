@@ -1,6 +1,7 @@
 #include "submissionmapper.h"
 
 #include <collectors.h>
+#include <QDebug>
 
 const char* createSubmissionTableSql = R"sql1(
 CREATE TABLE IF NOT EXISTS submission (
@@ -19,6 +20,7 @@ CREATE TABLE IF NOT EXISTS submission (
 SubmissionMapper::SubmissionMapper()
 {
 	db<<createSubmissionTableSql;
+//	db<<"UPDATE submission SET status='CTE' WHERE sid=26";
 }
 
 bool SubmissionMapper::insertSubmisssion(Submission &submission)
@@ -33,6 +35,8 @@ bool SubmissionMapper::insertSubmisssion(Submission &submission)
 	<<submission.get_difficulty()
 	<<submission.get_uid()
 	<<submission.get_pid();
+	int sid=db.last_insert_rowid();
+	submission.set_sid(to_string(sid));
 }
 
 shared_ptr<Submission> SubmissionMapper::getSubmissionById(string sid)
@@ -66,10 +70,16 @@ list<string> SubmissionMapper::getSubmissionIdsOfUser(string uid)
 
 void SubmissionMapper::update(const Submission &submission)
 {
-	db<<"UPDATE submission "
-		"WHERE sid = ? "
-		"SET status = ? , error = ? ;"
-	 <<submission.get_sid()
-	<<submission.get_status()
-	<<submission.get_error();
+	string sid=submission.get_sid();
+	string status=submission.get_status();
+	string error=submission.get_error();
+
+//	db<<"UPDATE submission SET status='CTE' WHERE sid=26";
+	auto &&stmt = db<<"UPDATE submission "
+		"SET status = ? , error = ? "
+		"WHERE sid = ? ;"
+	<<status
+	<<error
+	<<sid;
+	qDebug()<<stmt.sql().data()<<"\n"<<stmt.original_sql().data();
 }

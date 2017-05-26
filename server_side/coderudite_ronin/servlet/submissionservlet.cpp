@@ -47,7 +47,7 @@ QJsonObject judge(Submission &submission, FileService &fileService, SubmissionSe
 
 	submission.set_status(statusToString[result.status])
 			.set_error(result.m_err.str());
-	submissionService.updateSubmissionDetails(submission);
+//	submissionService.updateSubmissionDetails(submission);
 
 	return resultJSON;
 }
@@ -68,9 +68,9 @@ void SubmissionServlet::handle_parsed_request_on_end(Session &session, const QJs
 	{
 		Submission submission;
 		QObjectHelper::qjson2qobject(submissionJson, &submission);
+		reply = (QJsonDocument) judge(submission, fileService, submissionService);
 		submissionService.submit(session.userid, submission);
 
-		reply = (QJsonDocument) judge(submission, fileService, submissionService);
 //		reply = QJsonDocument::fromJson("{ \"message\" : \" successfully submitted\" }");
 	}
 	replyWithJson(resp,reply);
