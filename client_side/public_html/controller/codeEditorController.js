@@ -4,8 +4,9 @@ angular.module('mainNgApp').controller('codeEditorController', function ($scope)
 	$scope.types = ['c', 'java'];
 
 	$scope.sol = {
-		type: 'x'
+		type: app.state.currentLang || 'x'
 	};
+
 
 	$scope.result = {};
 
@@ -16,6 +17,8 @@ angular.module('mainNgApp').controller('codeEditorController', function ($scope)
 		};
 		editor.session.setMode(aceThemes[$scope.sol.type]);
 		//alert($scope.sol.type);
+		if (app.state.currentSrc !== undefined)
+			return;
 		if ($scope.sol.type === 'c')
 		{
 			var text = "#include<stdio.h>\n#include<string.h>\n#include<stdlib.h>\nint main()\n{\n\treturn 0;\n}";
@@ -27,7 +30,6 @@ angular.module('mainNgApp').controller('codeEditorController', function ($scope)
 			editor.setValue(text);
 		}
 
-
 	};
 
 	$scope.submitSolution = function () {
@@ -38,5 +40,12 @@ angular.module('mainNgApp').controller('codeEditorController', function ($scope)
 					$scope.result = d;
 					$scope.$apply();
 				});
+	};
+
+	$scope.updateModel = function () {
+		console.log(editor.getValue());
+		app.state.currentLang = $scope.sol.type;
+		app.state.currentSrc = editor.getValue();
+		app.saveState();
 	};
 });

@@ -63,6 +63,16 @@ function Application() {
 		return this.requestJson('/submission/submit', {pid: pid1, src: src1, lang: type});
 	};
 
+	this.submitSolutionForCurrentState = function (src1, type) {
+		return this.requestJson('/submission/submit', {
+			pid: app.state.currentPid,
+			pname: app.state.currentPname,
+			difficulty: 'Easy',
+			src: app.state.currentSrc,
+			lang: app.state.currentLang
+		});
+	};
+
 	this.registerUser = function (trialUser) {
 //		return this.requestJson('/register',trialUser);
 
