@@ -16,7 +16,8 @@ void RegistrationServlet::handle_parsed_request_on_end(Session &, const QJsonObj
 	{
 		replyWithJson(resp,QJsonDocument
 		(QJsonObject{
-			{ "message" , "Successfully Registered "}
+			{ "message" , "Successfully Registered "},
+			 {"status", "OK"}
 		 }));
 	}
 	else

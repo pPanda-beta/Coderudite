@@ -75,20 +75,7 @@ function Application() {
 	};
 
 	this.registerUser = function (trialUser) {
-//		return this.requestJson('/register',trialUser);
-
-		return	{
-			onsuccess: function (callback) {
-				callback({
-					message: "Registration Successful!",
-					status: "OK"
-				});
-				callback({
-					message: "Registration Unsuccessful! Email already exists",
-					status: "ERROR"
-				});
-			}
-		};
+		return this.requestJson('/register', trialUser);
 	};
 
 	this.getProblems = function () {
