@@ -20,39 +20,60 @@
 			<th>Submission Id</th>
 			<th>Problem</th>
 			<th>Status</th>
-			<th>Error</th>
 			<th>Source</th>
 			<th>Type</th>
 			<tr ng-repeat="submission in submissions">
 				<td>{{submission.sid}}</td>
 				<td>{{submission.pname}}</td>
-				<td ng-switch ="submission.status">
-					<div ng-switch-when="CTE">
-						<span class="pficon pficon-close"></span>
-					</div>
-					<div ng-switch-when="SUCC">
-						<span class="pficon pficon-ok"></span>
-					</div>
-					<div ng-switch-when="RTE">
-						<span class="pficon pficon-warning-triangle-o"></span>
-					</div>
-					<div ng-switch-when="TLE">
-						<span class="pficon pficon-history"></span>
-					</div>
-					<div ng-switch-when="ERR">
-						<span class="pficon pficon-error-circle-o"></span>
-					</div>
-					<div ng-switch-when="WAIT" class="spinner spinner-sm">
-					</div>
+				<td ng-switch ="submission.status"><a data-toggle="tooltip" data-placement="right" title="{{submission.error}}">
+						<div ng-switch-when="CTE">
+							<span class="pficon pficon-close">	Compile Time Error</span>
+						</div>
+						<div ng-switch-when="SUCC">
+							<span class="pficon pficon-ok">	Accepted</span>
+						</div>
+						<div ng-switch-when="RTE">
+							<span class="pficon pficon-warning-triangle-o">	Run Time Error</span>
+						</div>
+						<div ng-switch-when="TLE">
+							<span class="pficon pficon-history">	Time Limit Exceeded</span>
+						</div>
+						<div ng-switch-when="ERR">
+							<span class="pficon pficon-error-circle-o">	Wrong Answer</span>
+						</div>
+						<div ng-switch-when="WAIT" class="spinner spinner-sm">
+						</div>
+					</a>
 				</td>
-				<td>{{submission.error}}</td>
-				<td>{{submission.src}}</td>
-				<td>{{submission.type}}</td>
+				<td><a  data-toggle= "modal" data-target= "#submissionpanel" ng-click="displayCode(submission.pname)">{{submission.lang}}</a></td>
+				<td>{{submission.difficulty}}</td>
 			</tr>
-
 		</table>
+		<div class="modal fade" id="submissionpanel" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">Submitted Code:{{submission.lang}}</h3>
+					</div>
+					<div class="modal-body">
+						{{submission.src}}
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">Edit</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<!--{{selected.src}}-->
 
 		<!--{{ submissions | json }}-->
 	</div>
 </div>
+<script>
+//	$('#codeviewer').click(function(){
+//		alert("hello");
+//		$("#submissionpanel").toggle();
+//	});
+</script>

@@ -72,6 +72,26 @@ function Application() {
 			}
 		}
 	}
+	this.getProblems = function () {
+		var problem1 = {
+			id: "P001",
+			name: 'Hello 1',
+			desc: 'Punit ekta baba ',
+			ip_format: 'kkkk64645',
+			op_format: 'bmnbmnbmnbmn',
+			constraints: '0<i<100',
+			sample_ip: 'sdajajdajda',
+			sample_op: 'daksjdlasjd',
+			explanation: 'hocche naa hobe naa'
+		};
+		return {
+			onsuccess: function (callback) {
+				callback([problem1, problem1, problem1]);
+			}
+
+		};
+
+	};
 	this.getSubmission = function (sid1) {
 		return {
 			onsuccess: function (callback) {
@@ -79,10 +99,11 @@ function Application() {
 					sid: 'S001',
 					pid: 'P001',
 					pname: 'Palash\'s Party ' + sid1,
-					status: 'SUCC',
+					status: 'ERR',
 					error: 'N/A',
-					src: 'C++',
-					type: 'Easy'
+					src: '#include........',
+					lang: 'C++',
+					difficulty: 'Easy'
 				});
 			}
 		};
@@ -91,8 +112,10 @@ function Application() {
 	this.getMySubmissionIds = function () {
 		return {
 			onsuccess: function (callback) {
-				callback(["S001", "Punit", "S001"]);
+				callback(["S001", "Punit", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001", "S001"]);
 			}
 		};
 	};
+
+
 }

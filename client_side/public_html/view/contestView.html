@@ -1,6 +1,14 @@
+<div class="col-md-6 col-md-offset-3">
 
-
-<h1>
-	Helllloooooooooooo
-</h1>
-
+	<div id="problemset" ng-repeat="problem in problems">
+			<fieldset>
+				<legend>
+					<a href="#problem" ng-click="setCurrentProblem(problem.id)">
+						{{problem.name}}
+					</a>
+				</legend>
+				{{problem.desc}}
+			</fieldset>
+			<br><br><br>
+	</div>
+</div>
