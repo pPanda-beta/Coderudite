@@ -8,6 +8,8 @@ angular.module('mainNgApp').controller('loginController', function ($scope) {
 					.onsuccess(function (d) {
 						console.log(d);
 						$scope.message = d.message;
+						app.state.sessionId = d.sessionId;
+						app.saveState();
 						$scope.$apply();
 					});
 		}
