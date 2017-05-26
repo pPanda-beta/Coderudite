@@ -46,8 +46,9 @@ function Application() {
 		return this.requestJson('/login', user);
 	};
 
-	this.setCurrentProblemId = function (pid) {
-		app.state.currentPid = pid;
+	this.setCurrentProblem = function (problem) {
+		app.state.currentProblem = problem;
+		app.state.currentPid = problem.id;
 		app.saveState();
 	};
 
@@ -65,8 +66,8 @@ function Application() {
 
 	this.submitSolutionForCurrentState = function () {
 		return this.requestJson('/submission/submit', {
-			pid: app.state.currentPid,
-			pname: app.state.currentPname,
+			pid: app.state.currentProblem.id,
+			pname: app.state.currentProblem.name,
 			difficulty: 'Easy',
 			src: app.state.currentSrc,
 			lang: app.state.currentLang

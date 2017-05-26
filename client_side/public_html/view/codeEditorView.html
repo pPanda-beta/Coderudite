@@ -40,7 +40,7 @@
 
 		<select ng-model="sol.type" ng-options="m for m in types" ng-change="modeChanged()"></select>
 
-		<pre id="editor" style="border: 1px solid lightgray;	margin: auto;	height: 200px;	width: 80%;    " ng-keypress="updateModel()">
+		<pre id="editor" style="border: 1px solid lightgray;	margin: auto;	height: 200px;	width: 80%;    " ng-keyup="updateModel()">
 		****
 		Please select the
 		preferred Language

@@ -11,8 +11,8 @@ angular.module('mainNgApp').controller('contestController', function ($scope) {
 							});
 				});
 			});
-	$scope.setCurrentProblem = function (pid) {
-		console.log(pid);
-		app.setCurrentProblemId(pid);
+	$scope.setCurrentProblem = function (problem) {
+		console.log(problem);
+		app.setCurrentProblem(problem);
 	};
 });
