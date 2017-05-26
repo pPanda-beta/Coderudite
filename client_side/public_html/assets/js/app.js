@@ -63,7 +63,7 @@ function Application() {
 		return this.requestJson('/submission/submit', {pid: pid1, src: src1, lang: type});
 	};
 
-	this.submitSolutionForCurrentState = function (src1, type) {
+	this.submitSolutionForCurrentState = function () {
 		return this.requestJson('/submission/submit', {
 			pid: app.state.currentPid,
 			pname: app.state.currentPname,

@@ -49,6 +49,7 @@ shared_ptr<Submission> SubmissionMapper::getSubmissionById(string sid)
 	>>tie(sid, pname, status, error, src, lang, difficulty, uid, pid);
 
 	auto sbP = make_shared<Submission>();
+	sbP->set_sid(sid);
 	sbP->set_pname(pname)
 			.set_status(status)
 			.set_error(error)
