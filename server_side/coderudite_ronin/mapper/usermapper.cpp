@@ -6,14 +6,12 @@ CREATE TABLE IF NOT EXISTS user (
 	_id integer primary key autoincrement not null,
 	email text not null unique,
 	password text not null
-);
-)sql1";
+);	)sql1";
 
 
 const char* selectUserByEmailSql = R"sql1(
 SELECT * FROM user
-WHERE email = ? ;
-)sql1";
+WHERE email = ? ;	)sql1";
 
 
 UserMapper::UserMapper()

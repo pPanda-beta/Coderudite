@@ -14,8 +14,7 @@ CREATE TABLE IF NOT EXISTS submission (
 	difficulty text not null,
 	uid text not null,
 	pid text not null
-);
-)sql1";
+);	)sql1";
 
 SubmissionMapper::SubmissionMapper()
 {

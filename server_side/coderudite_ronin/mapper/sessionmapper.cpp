@@ -4,8 +4,7 @@ const char* createSessionTableSql = R"sql1(
 CREATE TABLE IF NOT EXISTS session (
 	sid integer primary key autoincrement not null,
 	userid text not null
-);
-)sql1";
+);	)sql1";
 
 const char* createSessionDataTableSql = R"sql1(
 CREATE TABLE IF NOT EXISTS session_data (
@@ -13,13 +12,11 @@ CREATE TABLE IF NOT EXISTS session_data (
 	key text not null,
 	value text	,
 	CONSTRAINT unique_key_for_session UNIQUE ( sid, key )
-);
-)sql1";
+);	)sql1";
 
 const char* selectSessionIdsByUserIdSql = R"sql1(
 SELECT sid FROM session
-WHERE userid = ? ;
-)sql1";
+WHERE userid = ? ;	)sql1";
 
 
 const char* selectUserIdFromSessionIdSql = R"sql1(
