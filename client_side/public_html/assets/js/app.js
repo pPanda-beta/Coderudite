@@ -13,13 +13,15 @@ function Application() {
 	};
 	this.loadState = function () {
 		if (localStorage.appState == undefined) {
-			this.state = {};
+			this.state = {
+				servers: app.defaultServers
+			};
 		} else {
 			this.state = JSON.parse(localStorage.appState);
 		}
 	};
 
-	this.state.servers = {
+	this.defaultServers = {
 		cdn: window.location.origin,
 		chost: window.location.protocol + '//' + window.location.hostname + ':' + '4444'
 	};
