@@ -17,7 +17,7 @@ QByteArray FileService::getContentsOfFile(QStringEx name)
 	{
 		return file.readAll();
 	}
-	throw "File not found";
+	throw "File : '"+name+"' not found";
 }
 
 using namespace std;
@@ -34,5 +34,5 @@ QJsonObject FileService::getProblem(QStringEx pid)
 			throw error.errorString();
 		return jsonObject;
 	}
-	throw "Problem File not found";
+	throw "Problem File id : '"+pid+"'  not found";
 }
