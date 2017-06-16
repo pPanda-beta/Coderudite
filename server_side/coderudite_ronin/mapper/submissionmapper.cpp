@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS submission (
 SubmissionMapper::SubmissionMapper()
 {
 	db<<createSubmissionTableSql;
-//	db<<"UPDATE submission SET status='CTE' WHERE sid=26";
 }
 
 bool SubmissionMapper::insertSubmisssion(Submission &submission)
@@ -70,16 +69,12 @@ list<string> SubmissionMapper::getSubmissionIdsOfUser(string uid)
 
 void SubmissionMapper::update(const Submission &submission)
 {
-	string sid=submission.get_sid();
-	string status=submission.get_status();
-	string error=submission.get_error();
-
-//	db<<"UPDATE submission SET status='CTE' WHERE sid=26";
+//	db<<"UPDATE submission SET status='CTE' WHERE sid=1";
 	auto &&stmt = db<<"UPDATE submission "
 		"SET status = ? , error = ? "
-		"WHERE sid = ? ;"
-	<<status
-	<<error
-	<<sid;
+		"WHERE sid = ? ;";
+
+	stmt<<submission.get_status()<<submission.get_error()<<submission.get_sid();
+	stmt.execute();
 	qDebug()<<stmt.sql().data()<<"\n"<<stmt.original_sql().data();
 }
