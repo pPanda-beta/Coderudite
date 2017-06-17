@@ -18,9 +18,10 @@ class Submission : public QObject
 			(QString, lang),
 			(QString, difficulty),
 			(QString, uid),
-			(QString, pid)
+			(QString, pid),
+			(QString, timestamp)
 			);
-	QStringEx sid, pname, status, error, src, lang, difficulty, uid, pid;
+	QStringEx sid, pname, status, error, src, lang, difficulty, uid, pid, timestamp;
 public:
 
 	DECL_GETTERS_AND_SETTERS_OF(
@@ -32,7 +33,8 @@ public:
 				(QStringEx, lang),
 				(QStringEx, difficulty),
 				(QStringEx, uid),
-				(QStringEx, pid)
+				(QStringEx, pid),
+				(QStringEx, timestamp)
 				);
 };
 

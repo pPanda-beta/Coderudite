@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS submission (
 	lang text not null,
 	difficulty text not null,
 	uid text not null,
-	pid text not null
+	pid text not null,
+	timestamp text not null
 );	)sql1";
 
 SubmissionMapper::SubmissionMapper()
@@ -23,8 +24,8 @@ SubmissionMapper::SubmissionMapper()
 
 bool SubmissionMapper::insertSubmisssion(Submission &submission)
 {
-	db<<"INSERT INTO submission (pname, status, error, src, lang, difficulty, uid, pid) "
-		"values(?,?,?,?,?,?,?,?) ;"
+	db<<"INSERT INTO submission (pname, status, error, src, lang, difficulty, uid, pid, timestamp) "
+		"values(?,?,?,?,?,?,?,?,?) ;"
 	 <<submission.get_pname()
 	<<submission.get_status()
 	<<submission.get_error()
@@ -32,19 +33,20 @@ bool SubmissionMapper::insertSubmisssion(Submission &submission)
 	<<submission.get_lang()
 	<<submission.get_difficulty()
 	<<submission.get_uid()
-	<<submission.get_pid();
+	<<submission.get_pid()
+	<<submission.get_timestamp();
 	int sid=db.last_insert_rowid();
 	submission.set_sid(to_string(sid));
 }
 
 shared_ptr<Submission> SubmissionMapper::getSubmissionById(string sid)
 {
-	string pname, status, error, src, lang, difficulty, uid, pid;
+	string pname, status, error, src, lang, difficulty, uid, pid,timestamp;
 
 	db<<"SELECT * FROM submission "
 		"WHERE sid=? ;"
 	 <<sid
-	>>tie(sid, pname, status, error, src, lang, difficulty, uid, pid);
+	>>tie(sid, pname, status, error, src, lang, difficulty, uid, pid,timestamp);
 
 	auto sbP = make_shared<Submission>();
 	sbP->set_sid(sid);
@@ -55,7 +57,8 @@ shared_ptr<Submission> SubmissionMapper::getSubmissionById(string sid)
 			.set_lang(lang)
 			.set_difficulty(difficulty)
 			.set_uid(uid)
-			.set_pid(pid);
+			.set_pid(pid)
+			.set_timestamp(timestamp);
 	return sbP;
 }
 

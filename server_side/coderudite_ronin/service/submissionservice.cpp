@@ -2,6 +2,7 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QDateTime>
 #include "../mapper/qobjecthelper.h"
 
 SubmissionService::SubmissionService(const SubmissionMapper &_sbmp)
@@ -14,6 +15,7 @@ void SubmissionService::submit(const string &userid, Submission &submission)
 {
 	submission
 			.set_uid(userid)
+			.set_timestamp(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss.zzz"))
 	;//		.set_status("WAIT");
 	submissionMapper.insertSubmisssion(submission);
 }

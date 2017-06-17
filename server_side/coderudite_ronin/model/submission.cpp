@@ -12,5 +12,6 @@ DEFN_GETTERS_AND_SETTERS_OF(
 		(Submission, QStringEx, lang),
 		(Submission, QStringEx, difficulty),
 		(Submission, QStringEx, uid),
-		(Submission, QStringEx, pid)
+		(Submission, QStringEx, pid),
+		(Submission, QStringEx, timestamp)
 		);
