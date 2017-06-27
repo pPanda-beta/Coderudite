@@ -81,3 +81,23 @@ void SubmissionMapper::update(const Submission &submission)
 	stmt.execute();
 	qDebug()<<stmt.sql().data()<<"\n"<<stmt.original_sql().data();
 }
+
+list<shared_ptr<Submission>> SubmissionMapper::getLatestSubmissionOfAllUsers()
+{
+	list<shared_ptr<Submission>> result;
+		db<<"SELECT sid,uid,pid,status, max(TIMESTAMP) as last_submission_time "
+			"FROM submission"
+			"GROUP BY uid,pid"
+	 >>[&](string sid, string uid, string pid, string status, string timestamp)
+		{
+			auto submissionP=make_shared<Submission>();
+			submissionP->set_sid(sid)
+					.set_uid(uid)
+					.set_pid(pid)
+					.set_status(status)
+					.set_timestamp(timestamp);
+			result.push_back(submissionP);
+		};
+	return result;
+}
+

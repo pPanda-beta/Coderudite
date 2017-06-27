@@ -4,6 +4,7 @@
 #include "abstractmapper.h"
 #include <model/submission.h>
 #include <list>
+#include <tuple>
 
 
 class SubmissionMapper : public AbstractMapper
@@ -15,6 +16,7 @@ public:
 	shared_ptr<Submission> getSubmissionById(string sid);
 	list<string> getSubmissionIdsOfUser(string uid);
 	void update(const Submission &submission);
+	list<shared_ptr<Submission>> getLatestSubmissionOfAllUsers();
 };
 
 #endif // SUBMISSIONMAPPER_H
