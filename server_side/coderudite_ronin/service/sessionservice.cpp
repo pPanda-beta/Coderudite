@@ -11,7 +11,9 @@ Session SessionService::createSession(const User &user)
 {
 //	string sid = static_cast<SessionMapper>(sessionMapper).createSessionIdFor(user);
 	string sid = sessionMapper.createSessionIdFor(user);
-	return Session((SessionService *)this, sid);
+	Session ssn((SessionService *)this, sid);
+	ssn.userid = user.get_id();
+	return ssn;
 }
 
 QStringEx SessionService::getUserIdFor(const string& sid)
