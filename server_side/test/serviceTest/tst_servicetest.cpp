@@ -116,13 +116,17 @@ void ServiceTest::populateSubmissions()
 
 	addSubmission("u001", "P001", "SUCC", " t1");
 	addSubmission("u001", "P003", "TLE", " t2");
+	addSubmission("u001", "P002", "SUCC", " t2");
 	addSubmission("u002", "P003", "ERR", " t3");
 	addSubmission("u002", "P001", "RTE", " t4");
 }
 
 void ServiceTest::testLeaderBoard()
 {
-	auto &&lbd = lbdServiceP->getCurrentLeaderBoard({"P001","P002","P003"});
+	auto &&lbd = lbdServiceP->getCurrentLeaderBoard(
+		{"P001","P002","P003"},
+		{ 100, 20, 300}
+	);
 	for(auto &row : lbd)
 		qDebug()<<row;
 }

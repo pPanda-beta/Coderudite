@@ -1,13 +1,14 @@
 #include "leaderboardservice.h"
 #include <unordered_map>
 
+
 LeaderBoardService::LeaderBoardService(SubmissionMapper _smp)
 	:submissionMapper(_smp)
 {
 
 }
 
-vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const list<string> &problemIds)
+vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const list<string> &problemIds, const vector<int> &scores)
 {
 //	static list<string> problemIds({"P001","P002","P003"});
 
@@ -21,16 +22,21 @@ vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const list<string>
 		emptyRow.append("N/A");
 
 	unordered_map <string, QStringList> userVsSubmission;
+	unordered_map <string, int> scoreOfUser;
+
 	auto &&submissions=submissionMapper.getLatestSubmissionOfAllUsers();
 	for(auto &subPtr : submissions)
 	{
 		auto &&row = userVsSubmission[subPtr->get_uid()];
 		if(row.isEmpty())
 			row = emptyRow;
-		row[columnNoOf[subPtr->get_pid()]] =
-				subPtr->get_status()
-				+ "\n"s
-				+ subPtr->get_timestamp();
+		auto col_i = columnNoOf[subPtr->get_pid()];
+		row[col_i] = subPtr->get_status()
+					+ "\n"s
+					+ subPtr->get_timestamp();
+
+		if(subPtr->get_status()=="SUCC")
+			scoreOfUser[subPtr->get_uid()] += scores[col_i-1];
 	}
 
 	vector<QStringList> leaderBoardData;
@@ -39,6 +45,7 @@ vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const list<string>
 	for(auto &kv : userVsSubmission)
 	{
 		kv.second[0] = QString::fromStdString(kv.first);
+		kv.second.append(QString::number(scoreOfUser[kv.first]));
 		leaderBoardData.push_back(kv.second);
 	}
 	return leaderBoardData;

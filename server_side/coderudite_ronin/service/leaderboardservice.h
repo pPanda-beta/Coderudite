@@ -13,7 +13,7 @@ public:
 	SubmissionMapper submissionMapper;
 	LeaderBoardService(SubmissionMapper _smp);
 
-	vector<QStringList> getCurrentLeaderBoard(const list<string> &);
+	vector<QStringList> getCurrentLeaderBoard(const list<string> &problemIds, const vector<int> &scores);
 };
 
 #endif // LEADERBOARDSERVICE_H
