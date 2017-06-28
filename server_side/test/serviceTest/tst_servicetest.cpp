@@ -4,6 +4,8 @@
 #include "mapper/usermapper.h"
 #include "service/userservice.h"
 #include "service/sessionservice.h"
+#include "service/leaderboardservice.h"
+
 
 class ServiceTest : public QObject
 {
@@ -15,17 +17,21 @@ public:
 	shared_ptr<UserMapper> userMapperP;
 	shared_ptr<UserService> userServiceP;
 	shared_ptr<SessionService> ssnServiceP;
+	shared_ptr<SubmissionMapper> submissionMapperP;
+	shared_ptr<LeaderBoardService> lbdServiceP;
 
 	User mrJoe;
 	Session mrJoesSession;
 
 private Q_SLOTS:
 	void initTestCase();
+	void populateSubmissions();
 	void cleanupTestCase();
 	void testLoginSuccess();
 	void testLoginFail();
 	void testUserIdOfValidSession();
 	void testStoreSessionData();
+	void testLeaderBoard();
 };
 
 ServiceTest::ServiceTest()
@@ -43,6 +49,9 @@ void ServiceTest::initTestCase()
 		userServiceP = make_shared<UserService>(*userMapperP);
 		ssnServiceP = make_shared<SessionService>(SessionMapper());
 
+		submissionMapperP = make_shared<SubmissionMapper>();
+		lbdServiceP = make_shared<LeaderBoardService>(*submissionMapperP);
+
 		userMapperP->insertUser(mrJoe);
 		userServiceP->login(mrJoe);
 		mrJoesSession = ssnServiceP->createSession(mrJoe);
@@ -53,6 +62,7 @@ void ServiceTest::initTestCase()
 		throw ;
 	}
 }
+
 
 void ServiceTest::cleanupTestCase()
 {
@@ -89,6 +99,32 @@ void ServiceTest::testStoreSessionData()
 		throw ;
 	}
 	QCOMPARE(value,"v1"s);
+}
+
+void ServiceTest::populateSubmissions()
+{
+	submissionMapperP->db<<" DELETE FROM submission ; ";
+	auto addSubmission = [&](QString uid, QString pid, QString status, QString timestamp)
+	{
+		Submission smb;
+		smb.set_uid(uid)
+			.set_pid(pid)
+			.set_status(status)
+			.set_timestamp(timestamp);
+		submissionMapperP->insertSubmisssion(smb);
+	};
+
+	addSubmission("u001", "P001", "SUCC", " t1");
+	addSubmission("u001", "P003", "TLE", " t2");
+	addSubmission("u002", "P003", "ERR", " t3");
+	addSubmission("u002", "P001", "RTE", " t4");
+}
+
+void ServiceTest::testLeaderBoard()
+{
+	auto &&lbd = lbdServiceP->getCurrentLeaderBoard({"P001","P002","P003"});
+	for(auto &row : lbd)
+		qDebug()<<row;
 }
 
 QTEST_APPLESS_MAIN(ServiceTest)

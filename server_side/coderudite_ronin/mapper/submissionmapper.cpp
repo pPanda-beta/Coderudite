@@ -86,8 +86,8 @@ list<shared_ptr<Submission>> SubmissionMapper::getLatestSubmissionOfAllUsers()
 {
 	list<shared_ptr<Submission>> result;
 		db<<"SELECT sid,uid,pid,status, max(TIMESTAMP) as last_submission_time "
-			"FROM submission"
-			"GROUP BY uid,pid"
+			"FROM submission "
+			"GROUP BY uid,pid "
 	 >>[&](string sid, string uid, string pid, string status, string timestamp)
 		{
 			auto submissionP=make_shared<Submission>();

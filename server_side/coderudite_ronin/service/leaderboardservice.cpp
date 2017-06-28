@@ -7,30 +7,38 @@ LeaderBoardService::LeaderBoardService(SubmissionMapper _smp)
 
 }
 
-list<QStringList> LeaderBoardService::getCurrentLeaderBoard()
+vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const list<string> &problemIds)
 {
-	static QStringList problemIds({"P001","P002","P003"});
+//	static list<string> problemIds({"P001","P002","P003"});
 
-	list<QStringList> leaderBoardData;
-	unordered_map <string, QStringList> userVsSubmission;
 	unordered_map <string, int> columnNoOf;
+	int columnNo = 1;
+	for(auto &pid : problemIds)
+		columnNoOf[pid] = columnNo++;
 
-	for(int i=0, columnNo=1; i<problemIds.size(); i++, columnNo++)
-		columnNoOf[problemIds[i].toStdString()]=columnNo;
+	QStringList emptyRow;
+	for(int i=0 ; i<columnNo; i++)
+		emptyRow.append("N/A");
 
+	unordered_map <string, QStringList> userVsSubmission;
 	auto &&submissions=submissionMapper.getLatestSubmissionOfAllUsers();
 	for(auto &subPtr : submissions)
 	{
-		userVsSubmission[subPtr->get_uid()]
-				.insert(columnNoOf[subPtr->get_pid()],
+		auto &&row = userVsSubmission[subPtr->get_uid()];
+		if(row.isEmpty())
+			row = emptyRow;
+		row[columnNoOf[subPtr->get_pid()]] =
 				subPtr->get_status()
 				+ "\n"s
-				+ subPtr->get_timestamp());
+				+ subPtr->get_timestamp();
 	}
 
-	for(auto kv : userVsSubmission)
+	vector<QStringList> leaderBoardData;
+	leaderBoardData.reserve(userVsSubmission.size());
+
+	for(auto &kv : userVsSubmission)
 	{
-		kv.second.insert(0, QString::fromStdString(kv.first));
+		kv.second[0] = QString::fromStdString(kv.first);
 		leaderBoardData.push_back(kv.second);
 	}
 	return leaderBoardData;
