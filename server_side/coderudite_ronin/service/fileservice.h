@@ -11,6 +11,7 @@ public:
 
 	QByteArray getContentsOfFile(QStringEx);
 	QJsonObject getProblem(QStringEx);
+	QStringList getProblemIds();
 };
 
 #endif // FILESERVICE_H

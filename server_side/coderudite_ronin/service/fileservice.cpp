@@ -2,6 +2,7 @@
 
 #include "../constants.hxx"
 
+#include <QDir>
 #include <QFile>
 #include <QJsonDocument>
 
@@ -36,3 +37,15 @@ QJsonObject FileService::getProblem(QStringEx pid)
 	}
 	throw "Problem File id : '"+pid+"'  not found";
 }
+
+QStringList FileService::getProblemIds()
+{
+	QDir problems(QString::fromStdString(problemDir));
+
+	return problems.entryList({"*.json"})
+					.replaceInStrings(
+						QRegExp("^(.*)\\.(.*)$"),
+									  "\\1");
+}
+
+
