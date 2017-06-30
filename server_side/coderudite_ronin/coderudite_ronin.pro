@@ -49,7 +49,8 @@ SOURCES += main.cpp\
     service/submissionservice.cpp \
     servlet/submissionservlet.cpp \
     servlet/registrationservlet.cpp \
-    service/leaderboardservice.cpp
+    service/leaderboardservice.cpp \
+    servlet/leaderboardservlet.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -87,7 +88,8 @@ HEADERS  += mainwindow.h \
     service/submissionservice.h \
     servlet/submissionservlet.hpp \
     servlet/registrationservlet.hpp \
-    service/leaderboardservice.h
+    service/leaderboardservice.h \
+    servlet/leaderboardservlet.h
 
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \

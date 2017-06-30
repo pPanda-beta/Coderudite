@@ -8,14 +8,14 @@ LeaderBoardService::LeaderBoardService(SubmissionMapper _smp)
 
 }
 
-vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const list<string> &problemIds, const vector<int> &scores)
+vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const QStringList &problemIds, const vector<int> &scores)
 {
 //	static list<string> problemIds({"P001","P002","P003"});
 
 	unordered_map <string, int> columnNoOf;
 	int columnNo = 1;
 	for(auto &pid : problemIds)
-		columnNoOf[pid] = columnNo++;
+		columnNoOf[pid.toStdString()] = columnNo++;
 
 	QStringList emptyRow;
 	for(int i=0 ; i<columnNo; i++)

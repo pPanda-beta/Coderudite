@@ -4,9 +4,10 @@
 #include "servlet/loginservlet.hpp"
 #include "servlet/problemservlet.hpp"
 #include "servlet/sseservlet.hpp"
+#include "servlet/leaderboardservlet.h"
 
 #include <service/submissionservice.h>
-
+#include <service/leaderboardservice.h>
 #include <servlet/registrationservlet.hpp>
 #include <servlet/submissionservlet.hpp>
 
@@ -28,6 +29,7 @@ int initWebFramework()
 	static EventService esr;
 	static SubmissionMapper submissionMapper;
 	static SubmissionService sbsr(submissionMapper);
+	static LeaderBoardService ldbsr(submissionMapper);
 
 	static ProblemServlet problemServlet(ssr, fsr);
 	static SubmissionServlet submissionServlet(ssr, fsr, sbsr);
@@ -42,6 +44,7 @@ int initWebFramework()
 		{	"/submission/getById", submissionServlet	},
 		{	"/submission/getAllIds", submissionServlet	},
 		{	"/submission/submit", submissionServlet	},
+		{	"/leaderboard",	LeaderboardServlet(ssr, fsr,ldbsr)	},
 		{	"/403", ErrorServlet("Access Denied")	},
 		{	"/404", ErrorServlet("Servlet not found")	}
 	};
