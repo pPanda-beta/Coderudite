@@ -12,11 +12,11 @@
 		<span style="color:red" ng-show="registerForm.lname.$error.required">Last Name is required.</span>
 		<br>
 		<label>Email Id</label>
-		<input type="email" name="emailid" id="emailid" ng-model="trialUser.emailid" required>
+		<input type="email" name="emailid" id="emailid" ng-model="trialUser.email" required>
 		<span style="color:red" ng-show="registerForm.emailid.$error.required">Email Id is required.</span>
 		<br>
 		<label>Password</label>
-		<input type="password" name="pwd" id="pwd" ng-model="trialUser.pwd" required>
+		<input type="password" name="pwd" id="pwd" ng-model="trialUser.password" required>
 		<span style="color:red" ng-show="registerForm.pwd.$error.required">Password is required.</span>
 		<br>
 		<label>Date of Birth</label>
@@ -28,5 +28,5 @@
 </div>
 
 <script>
-	setTimeout(()=> $("#jspanel-open").hide(), 100);
+	setTimeout(() => $("#jspanel-open").hide(), 100);
 </script>
