@@ -22,7 +22,8 @@ map<string, TServerHandler> ContestHostServer::requestMappings;
 int initWebFramework()
 {
 	static UserMapper userMapper;
-	static UserService usr(userMapper);
+	static UserInfoMapper userInfoMapper;
+	static UserService usr(userMapper, userInfoMapper);
 	static SessionMapper sessionMapper;
 	static SessionService ssr(sessionMapper);
 	static FileService fsr;

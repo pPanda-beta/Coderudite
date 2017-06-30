@@ -15,6 +15,7 @@ public:
 	ServiceTest();
 
 	shared_ptr<UserMapper> userMapperP;
+	shared_ptr<UserInfoMapper> userInfoMapperP;
 	shared_ptr<UserService> userServiceP;
 	shared_ptr<SessionService> ssnServiceP;
 	shared_ptr<SubmissionMapper> submissionMapperP;
@@ -46,7 +47,8 @@ void ServiceTest::initTestCase()
 	{
 		AbstractMapper::universal_db = database("../data/service_test_db.db");
 		userMapperP = make_shared<UserMapper>();
-		userServiceP = make_shared<UserService>(*userMapperP);
+		userInfoMapperP = make_shared<UserInfoMapper>();
+		userServiceP = make_shared<UserService>(*userMapperP, *userInfoMapperP);
 		ssnServiceP = make_shared<SessionService>(SessionMapper());
 
 		submissionMapperP = make_shared<SubmissionMapper>();

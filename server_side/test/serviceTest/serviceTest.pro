@@ -31,6 +31,7 @@ SOURCES += tst_servicetest.cpp \
 	$$PRJDIR/coderudite_ronin/mapper/qobjecthelper.cpp \
 	$$PRJDIR/coderudite_ronin/mapper/abstractmapper.cpp	\
 	$$PRJDIR/coderudite_ronin/mapper/usermapper.cpp	\
+	$$PRJDIR/coderudite_ronin/mapper/userinfomapper.cpp	\
 	$$PRJDIR/coderudite_ronin/mapper/sessionmapper.cpp	\
 	$$PRJDIR/coderudite_ronin/mapper/submissionmapper.cpp	\
 	$$PRJDIR/coderudite_ronin/service/userservice.cpp	\

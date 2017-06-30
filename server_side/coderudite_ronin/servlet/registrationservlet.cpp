@@ -14,6 +14,7 @@ void RegistrationServlet::handle_parsed_request_on_end(Session &, const QJsonObj
 	QObjectHelper::qjson2qobject(trialUserJson, &trialUser);
 	if(userService.register_user(trialUser))
 	{
+		userService.updateUserInfo(trialUser, trialUserJson.toVariantHash());
 		replyWithJson(resp,QJsonDocument
 		(QJsonObject{
 			{ "message" , "Successfully Registered "},
