@@ -30,7 +30,7 @@ int initWebFramework()
 	static EventService esr;
 	static SubmissionMapper submissionMapper;
 	static SubmissionService sbsr(submissionMapper);
-	static LeaderBoardService ldbsr(submissionMapper);
+	static LeaderBoardService ldbsr(submissionMapper, userInfoMapper);
 
 	static ProblemServlet problemServlet(ssr, fsr);
 	static SubmissionServlet submissionServlet(ssr, fsr, sbsr);

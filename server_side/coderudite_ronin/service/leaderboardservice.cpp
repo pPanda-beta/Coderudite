@@ -2,8 +2,9 @@
 #include <unordered_map>
 
 
-LeaderBoardService::LeaderBoardService(SubmissionMapper _smp)
-	:submissionMapper(_smp)
+LeaderBoardService::LeaderBoardService(SubmissionMapper _smp, UserInfoMapper &_uinfomp)
+	:submissionMapper(_smp),
+	userInfoMapper(_uinfomp)
 {
 
 }
@@ -44,7 +45,15 @@ vector<QStringList> LeaderBoardService::getCurrentLeaderBoard(const QStringList 
 
 	for(auto &kv : userVsSubmission)
 	{
-		kv.second[0] = QString::fromStdString(kv.first);
+		try {
+			auto uid = kv.first;
+			auto fname = userInfoMapper.getInfoOfUser(uid,"firstName");
+			auto lname = userInfoMapper.getInfoOfUser(uid,"lastName");
+			kv.second[0] = QString::fromStdString(fname+" "+lname);
+		} catch (...) {
+			kv.second[0] = "Annonymous User";
+		}
+
 		kv.second.append(QString::number(scoreOfUser[kv.first]));
 		leaderBoardData.push_back(kv.second);
 	}

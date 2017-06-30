@@ -15,7 +15,7 @@ void LeaderboardServlet::handle_parsed_request_on_end(Session &, const QJsonObje
 	vector<int> scores;
 	scores.reserve(problemIds.size());
 
-	QStringList thead({"User id"});
+	QStringList thead({"User Name"});
 
 	for(auto &pid : problemIds)
 	{

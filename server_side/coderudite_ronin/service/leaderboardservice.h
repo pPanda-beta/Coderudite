@@ -4,6 +4,7 @@
 #include <QJsonArray>
 
 #include <mapper/submissionmapper.h>
+#include <mapper/userinfomapper.h>
 
 
 
@@ -11,7 +12,8 @@ class LeaderBoardService
 {
 public:
 	SubmissionMapper submissionMapper;
-	LeaderBoardService(SubmissionMapper _smp);
+	UserInfoMapper userInfoMapper;
+	LeaderBoardService(SubmissionMapper _smp, UserInfoMapper &);
 
 	vector<QStringList> getCurrentLeaderBoard(const QStringList &problemIds, const vector<int> &scores);
 };

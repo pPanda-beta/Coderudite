@@ -52,7 +52,7 @@ void ServiceTest::initTestCase()
 		ssnServiceP = make_shared<SessionService>(SessionMapper());
 
 		submissionMapperP = make_shared<SubmissionMapper>();
-		lbdServiceP = make_shared<LeaderBoardService>(*submissionMapperP);
+		lbdServiceP = make_shared<LeaderBoardService>(*submissionMapperP, *userInfoMapperP);
 
 		userMapperP->insertUser(mrJoe);
 		userServiceP->login(mrJoe);
