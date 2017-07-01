@@ -21,8 +21,7 @@ WHERE userid = ? ;	)sql1";
 
 const char* selectUserIdFromSessionIdSql = R"sql1(
 SELECT userid FROM session
-WHERE sid = ? ;
-)sql1";
+WHERE sid = ? ;		)sql1";
 
 
 

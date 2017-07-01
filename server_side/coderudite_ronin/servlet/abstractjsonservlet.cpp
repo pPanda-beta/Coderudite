@@ -20,6 +20,8 @@ void AbstractJsonServlet::handle_parsed_request_on_end(QHttpRequest *req, map<st
 	session.req = req;
 	session.requestFields = requestFields;
 
+	qDebug()<<"Got session Id : "<<requestFields["sessionId"].data()<< " | User id : " <<session.userid;
+
 	if(requestFields.find("json")==requestFields.end())
 		throw "Not a Json Request";
 

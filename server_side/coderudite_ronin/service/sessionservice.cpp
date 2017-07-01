@@ -24,7 +24,7 @@ QStringEx SessionService::getUserIdFor(const string& sid)
 	}
 	catch (sqlite_exception e)
 	{
-//		qDebug()<<__FILE__<<__LINE__<<e.what()<<e.get_code()<<e.get_sql().data()<<"\n";
+		qDebug()<<__FILE__<<__LINE__<<e.what()<<e.get_code()<<e.get_sql().data()<<"\n";
 		return "";
 	}
 }
