@@ -4,15 +4,21 @@
 #include <map>
 #include <list>
 #include <tuple>
+#include <memory>
+#include <mutex>
 #include "../model/session.h"
 
 class EventService
 {
 	std::map<std::string,
 		std::list<
-			std::pair<Session, qhttp::server::QHttpResponse *>
+			std::pair<
+				Session,
+				std::weak_ptr<qhttp::server::QHttpResponse >
+			>
 		>
 	>	eventListeners;
+	std::mutex mt;
 public:
 	EventService();
 
