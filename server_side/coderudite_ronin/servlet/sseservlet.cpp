@@ -14,6 +14,8 @@ void SSEServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, str
 	auto tcpSocketConn = req->connection();
 	requestNoOf[tcpSocketConn]++;
 
+	resp->addHeader("connection", "keep-alive");
+
 	if(requestNoOf[tcpSocketConn] == 1)
 	{
 		QObject::connect((QObject *)tcpSocketConn, &QObject::destroyed, [=]
@@ -21,7 +23,6 @@ void SSEServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, str
 			requestNoOf.remove(tcpSocketConn);
 		});
 
-		resp->addHeader("connection", "keep-alive");
 		replyWith(resp, "{ \"m\" : \"Socket ready for SSE\" }"s);
 	}
 
