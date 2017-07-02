@@ -40,7 +40,7 @@ int initWebFramework()
 		{	"/login", LoginServlet(ssr,usr)	},
 		{	"/register", RegistrationServlet(ssr,usr)	},
 		{	"/problem/getById", problemServlet	},
-		{	"/events", SSEServlet(esr)	},
+		{	"/events", SSEServlet(esr, ssr)	},
 		{	"/submission/getById", submissionServlet	},
 		{	"/submission/getAllIds", submissionServlet	},
 		{	"/submission/submit", submissionServlet	},

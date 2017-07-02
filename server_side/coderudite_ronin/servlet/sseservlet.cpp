@@ -2,12 +2,12 @@
 #include "helpers.hxx"
 
 
-SSEServlet::SSEServlet(EventService &esr)
-	: eventService(esr)
+SSEServlet::SSEServlet(EventService &esr, SessionService &ssr)
+	: eventService(esr),
+	  sessionService(ssr)
 {
 
 }
-
 
 void SSEServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, string> requestFields, QHttpResponse *resp)
 {
@@ -28,7 +28,7 @@ void SSEServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, str
 
 	if(requestNoOf[tcpSocketConn] == 2)
 	{
-		Session session(NULL, requestFields["sessionId"]);
+		Session session(&sessionService, requestFields["sessionId"]);
 		eventService.addListener(requestFields["event"], session, resp);
 	}
 }

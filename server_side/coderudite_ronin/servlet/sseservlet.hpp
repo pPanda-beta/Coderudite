@@ -9,7 +9,8 @@
 struct SSEServlet : public AbstractServlet
 {
 	EventService &eventService;
-	SSEServlet(EventService &);
+	SessionService &sessionService;
+	SSEServlet(EventService &, SessionService &);
 
 	QHash<QHttpConnection *, int> requestNoOf;
 
