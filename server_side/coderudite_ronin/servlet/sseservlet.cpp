@@ -1,4 +1,5 @@
 #include "sseservlet.hpp"
+#include "helpers.hxx"
 
 
 SSEServlet::SSEServlet(EventService &esr)
@@ -7,8 +8,26 @@ SSEServlet::SSEServlet(EventService &esr)
 
 }
 
+
 void SSEServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, string> requestFields, QHttpResponse *resp)
 {
-	Session session(NULL, requestFields["sid"]);
-	eventService.addListener(requestFields["event"], session, resp);
+	auto tcpSocketConn = req->connection();
+	requestNoOf[tcpSocketConn]++;
+
+	if(requestNoOf[tcpSocketConn] == 1)
+	{
+		QObject::connect((QObject *)tcpSocketConn, &QObject::destroyed, [=]
+		{
+			requestNoOf.remove(tcpSocketConn);
+		});
+
+		resp->addHeader("connection", "keep-alive");
+		replyWith(resp, "{ \"m\" : \"Socket ready for SSE\" }"s);
+	}
+
+	if(requestNoOf[tcpSocketConn] == 2)
+	{
+		Session session(NULL, requestFields["sessionId"]);
+		eventService.addListener(requestFields["event"], session, resp);
+	}
 }

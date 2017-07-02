@@ -41,7 +41,6 @@ int initWebFramework()
 		{	"/register", RegistrationServlet(ssr,usr)	},
 		{	"/problem/getById", problemServlet	},
 		{	"/events", SSEServlet(esr)	},
-		{	"/events", submissionServlet	},
 		{	"/submission/getById", submissionServlet	},
 		{	"/submission/getAllIds", submissionServlet	},
 		{	"/submission/submit", submissionServlet	},
