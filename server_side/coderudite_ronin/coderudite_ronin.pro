@@ -91,11 +91,12 @@ HEADERS  += mainwindow.h \
     servlet/registrationservlet.hpp \
     service/leaderboardservice.h \
     servlet/leaderboardservlet.h \
-    mapper/userinfomapper.h
+	mapper/userinfomapper.h
 
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \
 	helpers.hxx \
+	concurrency_helpers.hxx \
 	$$PRJDIR/lib/sqlite3/sqlite3.h	\
 	$$PRJDIR/lib/sqlite_modern_cpp/sqlite_modern_cpp.h	\
 	$$PRJDIR/lib/sqlite_modern_cpp/collectors.h
