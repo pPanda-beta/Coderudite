@@ -5,7 +5,6 @@
 #include <QProcess>
 #include <map>
 #include <functional>
-#include "qstringex.h"
 #include "runresult.h"
 #include "helpers.hxx"
 #include "constants.hxx"

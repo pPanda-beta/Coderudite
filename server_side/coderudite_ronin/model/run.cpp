@@ -94,6 +94,19 @@ void prepareGcc(Solution &src, QProcess &run_process, RunResult &result, string 
 		run_process.setProgram(QString::fromStdString(workingDir+"/src.exe"s));
 }
 
+void prepareCpp(Solution &src, QProcess &run_process, RunResult &result, string &workingDir)
+{
+	saveToFile(workingDir+"/src.cpp"s, src);
+
+	QProcess compile;
+	compile.setWorkingDirectory(QString::fromStdString(workingDir));
+	compile.start("g++", QStringList()<<"src.cpp"<<"-std=c++11"<<"-o"<<"src.exe");
+	if(!compile.waitForFinished()  || compile.exitCode() != 0)
+		setCompilationError(result, compile);
+	else
+		run_process.setProgram(QString::fromStdString(workingDir+"/src.exe"s));
+}
+
 void prepareJava(Solution &src, QProcess &run_process, RunResult &result, string &workingDir)
 {
 	saveToFile(workingDir+"/Main.java"s,src);
@@ -113,5 +126,6 @@ int r=[]()
 {
 	prepare["c"]=prepareGcc;
 	prepare["java"]=prepareJava;
+	prepare["cpp"] = prepareCpp;
 	return 0;
 }();
