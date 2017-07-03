@@ -12,7 +12,7 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QTimer>
 #include <QThread>
-#include <QApplication>
+#include <QCoreApplication>
 
 template <typename Func>
 inline void runOnThread(QThread *qThread, Func &&func)
