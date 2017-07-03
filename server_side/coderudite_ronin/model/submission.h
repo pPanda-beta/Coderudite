@@ -23,7 +23,8 @@ class Submission : public QObject
 			);
 	QStringEx sid, pname, status, error, src, lang, difficulty, uid, pid, timestamp;
 public:
-
+	Submission() = default;
+	Submission(QStringEx sid, QStringEx pname, QStringEx status, QStringEx error, QStringEx src, QStringEx lang, QStringEx difficulty, QStringEx uid, QStringEx pid, QStringEx timestamp);
 	DECL_GETTERS_AND_SETTERS_OF(
 				(QStringEx, sid),
 				(QStringEx, pname),
