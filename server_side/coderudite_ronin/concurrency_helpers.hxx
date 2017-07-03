@@ -3,7 +3,6 @@
 
 #include <thread>
 #include <memory>
-#include <condition_variable>
 #include <future>
 #include <algorithm>
 #include <vector>
@@ -12,11 +11,17 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QTimer>
 #include <QThread>
+#include <QSemaphore>
 #include <QCoreApplication>
 
 template <typename Func>
 inline void runOnThread(QThread *qThread, Func &&func)
 {
+	if(qThread == QThread::currentThread())
+	{
+		func();
+		return;
+	}
 	QTimer *t = new QTimer();
 	t->moveToThread(qThread);
 	t->setSingleShot(true);
@@ -38,15 +43,16 @@ inline void runOnMainThread(Func &&func)
 inline
 void moveToThread(QObject *ptr, QThread *targetThrd=QThread::currentThread())
 {
-	std::mutex mt;
-	std::condition_variable_any cv;
-	runOnThread(ptr->thread(),[&]
+	QSemaphore done;
+	auto mover = [&]
 	{
 		ptr->setParent(NULL);
 		ptr->moveToThread(targetThrd);
-		cv.notify_one();
-	});
-	cv.wait(mt);
+		done.release();
+	};
+	runOnThread(ptr->thread(),mover);
+	if(QThread::currentThread() != ptr->thread())
+		done.acquire();
 }
 
 inline
