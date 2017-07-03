@@ -51,7 +51,8 @@ SOURCES += main.cpp\
     servlet/registrationservlet.cpp \
     service/leaderboardservice.cpp \
     servlet/leaderboardservlet.cpp \
-    mapper/userinfomapper.cpp
+    mapper/userinfomapper.cpp \
+    service/judgeservice.cpp
 
 HEADERS  += mainwindow.h \
     cdnview.h \
@@ -91,7 +92,8 @@ HEADERS  += mainwindow.h \
     servlet/registrationservlet.hpp \
     service/leaderboardservice.h \
     servlet/leaderboardservlet.h \
-	mapper/userinfomapper.h
+	mapper/userinfomapper.h \
+    service/judgeservice.h
 
 PRECOMPILED_HEADER +=     model/bean.hxx \
 	constants.hxx \

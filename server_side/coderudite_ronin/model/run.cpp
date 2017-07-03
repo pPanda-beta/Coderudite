@@ -1,13 +1,26 @@
 #include "run.h"
 #include <QDebug>
+#include <QDir>
+#include <mutex>
 
-map<string, function<void(Solution &, QProcess&, RunResult &)>> prepare;
+map<string, function<void(Solution &, QProcess&, RunResult &, string &)>> prepare;
+
+static int runId = 1;
+static mutex mtRun;
+
 
 Run::Run(Solution src):m_src(src)
 {
+	{
+		lock_guard<mutex> lk(mtRun);
+		workingDir = tmpRoot + "/"s + QString::number(runId).toStdString();
+		QDir(".").mkpath(QString::fromStdString(workingDir));
+		runId++;
+	}
+
 	string type = m_src.getType();
 	if(prepare.find(type) != prepare.end())
-		prepare[type](m_src,m_handle, result);
+		prepare[type](m_src,m_handle, result, workingDir);
 	else
 	{
 		result.status = RunResult::STATUS::ERR;
@@ -18,7 +31,7 @@ Run::Run(Solution src):m_src(src)
 
 RunResult Run::execute(string inp, int ms)
 {
-	m_handle.setWorkingDirectory(QString::fromStdString(tmpRoot));
+	m_handle.setWorkingDirectory(QString::fromStdString(workingDir));
 	if(result.status != RunResult::STATUS::SUCC)
 		return result;
 
@@ -68,24 +81,24 @@ void setCompilationError(RunResult &result, QProcess &compile)
 	result.m_err<<compile.readAllStandardError().toStdString()<<"\n"<<compile.readAllStandardOutput().toStdString();
 }
 
-void prepareGcc(Solution &src, QProcess &run_process, RunResult &result)
+void prepareGcc(Solution &src, QProcess &run_process, RunResult &result, string &workingDir)
 {
-	saveToFile(tmpRoot+"/src.c", src);
+	saveToFile(workingDir+"/src.c"s, src);
 
 	QProcess compile;
-	compile.setWorkingDirectory(QString::fromStdString(tmpRoot));
+	compile.setWorkingDirectory(QString::fromStdString(workingDir));
 	compile.start("gcc", QStringList()<<"src.c"<<"-o"<<"src.exe");
 	if(!compile.waitForFinished()  || compile.exitCode() != 0)
 		setCompilationError(result, compile);
 	else
-		run_process.setProgram(QString::fromStdString(tmpRoot+"/src.exe"));
+		run_process.setProgram(QString::fromStdString(workingDir+"/src.exe"s));
 }
 
-void prepareJava(Solution &src, QProcess &run_process, RunResult &result)
+void prepareJava(Solution &src, QProcess &run_process, RunResult &result, string &workingDir)
 {
-	saveToFile(tmpRoot+"/Main.java",src);
+	saveToFile(workingDir+"/Main.java"s,src);
 	QProcess compile;
-	compile.setWorkingDirectory(QString::fromStdString(tmpRoot));
+	compile.setWorkingDirectory(QString::fromStdString(workingDir));
 	compile.start("javac", QStringList()<<"Main.java");
 	if(!compile.waitForFinished()  || compile.exitCode() != 0)
 		setCompilationError(result, compile);

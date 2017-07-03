@@ -5,6 +5,7 @@
 #include <QProcess>
 #include <map>
 #include <functional>
+#include "qstringex.h"
 #include "runresult.h"
 #include "helpers.hxx"
 #include "constants.hxx"
@@ -15,6 +16,8 @@ class Run
 	Solution m_src;
 	QProcess m_handle;
 	RunResult result;
+
+	string workingDir;
 public:
 	Run(Solution src);
 	RunResult execute(string input, int ms);
