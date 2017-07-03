@@ -98,6 +98,17 @@ list<shared_ptr<Submission>> SubmissionMapper::getLatestSubmissionOfAllUsers()
 					.set_timestamp(timestamp);
 			result.push_back(submissionP);
 		};
-	return result;
+		return result;
+}
+
+list<shared_ptr<Submission> > SubmissionMapper::getAllWaitingSubmissions()
+{
+	list<shared_ptr<Submission>> pendingSubmissions;
+	db<<"SELECT * "
+		"FROM submission "
+		"WHERE status = 'WAIT' ; "
+	 >>collect<string, string, string, string, string, string, string, string, string, string>
+			::to(pendingSubmissions);
+	return pendingSubmissions;
 }
 

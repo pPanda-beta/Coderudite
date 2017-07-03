@@ -17,6 +17,7 @@ public:
 	list<string> getSubmissionIdsOfUser(string uid);
 	void update(const Submission &submission);
 	list<shared_ptr<Submission>> getLatestSubmissionOfAllUsers();
+	list<shared_ptr<Submission>> getAllWaitingSubmissions();
 };
 
 #endif // SUBMISSIONMAPPER_H
