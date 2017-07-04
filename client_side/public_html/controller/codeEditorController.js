@@ -18,8 +18,12 @@ angular.module('mainNgApp').controller('codeEditorController', function ($scope)
 		};
 		editor.session.setMode(aceThemes[$scope.sol.type]);
 		//alert($scope.sol.type);
-//		if (app.state.currentSrc !== undefined)
-//			return;
+		app.state.currentLang = $scope.sol.type;
+		if (app.state.currentSrc !== undefined && app.state.currentSrc[app.state.currentLang] !== undefined)
+		{
+			editor.setValue(app.state.currentSrc[app.state.currentLang]);
+			return;
+		}
 		if ($scope.sol.type === 'c')
 		{
 			var text = "#include<stdio.h>\n#include<string.h>\n#include<stdlib.h>\nint main()\n{\n\treturn 0;\n}";
@@ -49,9 +53,11 @@ angular.module('mainNgApp').controller('codeEditorController', function ($scope)
 	};
 
 	$scope.updateModel = function () {
-		console.log(editor.getValue());
+//		console.log(editor.getValue());
 		app.state.currentLang = $scope.sol.type;
-		app.state.currentSrc = editor.getValue();
+		if (app.state.currentSrc == undefined)
+			app.state.currentSrc = {};
+		app.state.currentSrc[app.state.currentLang] = editor.getValue();
 		app.saveState();
 	};
 });

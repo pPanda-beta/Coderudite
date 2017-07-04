@@ -57,9 +57,11 @@
 						enableLiveAutocompletion: true
 					});
 
-//					if(app.state.currentSrc !== undefined)
-//						editor.setValue(app.state.currentSrc);
-				
+			if (app.state.currentSrc !== undefined && app.state.currentSrc[app.state.currentLang] !== undefined)
+			{
+				editor.setValue(app.state.currentSrc[app.state.currentLang]);
+			}
+
 		</script>
 		<br/>
 		<button ng-click="submitSolution()"> Submit</button>
