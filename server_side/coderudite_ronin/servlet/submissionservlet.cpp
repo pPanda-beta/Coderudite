@@ -8,10 +8,11 @@
 #include <model/run.h>
 #include <model/solution.h>
 
-SubmissionServlet::SubmissionServlet(SessionService &_sp, FileService &_fp, SubmissionService &sbsr)
+SubmissionServlet::SubmissionServlet(SessionService &_sp, FileService &_fp, SubmissionService &sbsr, JudgeService &jdgsr)
 	: AbstractJsonServlet (_sp),
 	  fileService(_fp),
-	  submissionService(sbsr)
+	  submissionService(sbsr),
+	  judgeService(jdgsr)
 {
 
 }
@@ -69,9 +70,9 @@ void SubmissionServlet::handle_parsed_request_on_end(Session &session, const QJs
 		Submission submission;
 		QObjectHelper::qjson2qobject(submissionJson, &submission);
 		submissionService.submit(session.userid, submission);
-		reply = (QJsonDocument) judge(submission, fileService, submissionService);
-
-//		reply = QJsonDocument::fromJson("{ \"message\" : \" successfully submitted\" }");
+//		reply = (QJsonDocument) judge(submission, fileService, submissionService);
+		judgeService.processPendimgSubmissions();
+		reply = QJsonDocument::fromJson("{ \"status\" : \" successfully submitted\" }");
 	}
 	replyWithJson(resp,reply);
 }

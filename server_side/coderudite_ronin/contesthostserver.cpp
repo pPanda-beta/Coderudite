@@ -8,6 +8,7 @@
 
 #include <service/submissionservice.h>
 #include <service/leaderboardservice.h>
+#include <service/judgeservice.h>
 #include <servlet/registrationservlet.hpp>
 #include <servlet/submissionservlet.hpp>
 
@@ -30,10 +31,11 @@ int initWebFramework()
 	static EventService esr;
 	static SubmissionMapper submissionMapper;
 	static SubmissionService sbsr(submissionMapper);
+	static JudgeService jdgsr(submissionMapper, esr, fsr);
 	static LeaderBoardService ldbsr(submissionMapper, userInfoMapper);
 
 	static ProblemServlet problemServlet(ssr, fsr);
-	static SubmissionServlet submissionServlet(ssr, fsr, sbsr);
+	static SubmissionServlet submissionServlet(ssr, fsr, sbsr, jdgsr);
 
 	ContestHostServer::requestMappings =
 	{

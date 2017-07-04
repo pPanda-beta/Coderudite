@@ -15,17 +15,27 @@ JudgeService::JudgeService(SubmissionMapper &smp, EventService &esr, FileService
 {
 	running = true;
 	pool = new QThreadPool(qApp);
+	pool->setMaxThreadCount(5);
+	runOnQThreadPool(pool, [this]
+	{
+		this->mainLoop();
+	});
 }
 
 void JudgeService::prepareRuns()
 {
 	auto &&listOfSubmissions = submissionMapper.getAllWaitingSubmissions();
 	pendingSubmissions = {listOfSubmissions.begin(), listOfSubmissions.end()};
+	runnableSolutions = vector<shared_ptr<Run>>(pendingSubmissions.size());
+	runResults = vector<shared_ptr<RunResult>>(pendingSubmissions.size());
 
-	async_transform(pool, pendingSubmissions, runnableSolutions, [](auto subP)
+	auto originalThread = QThread::currentThread();
+	async_transform(pool, pendingSubmissions, runnableSolutions, [&](auto subP)
 	{
 		Solution sol(subP->get_src(), subP->get_lang());
-		return  make_shared<Run>(sol);
+		auto run_ptr =  make_shared<Run>(sol);
+		moveToThread(&(run_ptr->m_handle), originalThread);
+		return run_ptr;
 	});
 }
 
@@ -48,8 +58,8 @@ void JudgeService::verifyOutputsAndUpdateSubmissions()
 		string output = result.m_oup.str()+"";
 		if(result.status == RunResult::SUCC)
 		{
-	//		convertCRLF2LF(output);
-	//		convertCRLF2LF(outputData);
+//			convertCRLF2LF(output);
+//			convertCRLF2LF(outputData);
 			if(output != outputData.toStdString())
 			{
 				result.status = RunResult::ERR;
@@ -77,6 +87,14 @@ void JudgeService::mainLoop()
 		prepareRuns();
 		runSubmissionCodes();
 		verifyOutputsAndUpdateSubmissions();
+
+		runOnMainThread([=]
+		{
+			eventService.replyForEvent("submissionsUpdated",[](auto resp)
+			{
+				replyWith(resp, "{ \"m\" : \"Updated\" }"s);
+			});
+		});
 	}
 }
 
@@ -88,4 +106,5 @@ void JudgeService::processPendimgSubmissions()
 JudgeService::~JudgeService()
 {
 	running = false;
+	cv.notify_all();
 }

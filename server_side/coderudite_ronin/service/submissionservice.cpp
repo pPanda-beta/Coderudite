@@ -16,7 +16,7 @@ void SubmissionService::submit(const string &userid, Submission &submission)
 	submission
 			.set_uid(userid)
 			.set_timestamp(QDateTime::currentDateTime().toString("yyyy.MM.dd HH:mm:ss.zzz"))
-	;//		.set_status("WAIT");
+			.set_status("WAIT");
 	submissionMapper.insertSubmisssion(submission);
 }
 

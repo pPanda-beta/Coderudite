@@ -13,11 +13,12 @@ class Run
 {
 	int run_id;
 	Solution m_src;
-	QProcess m_handle;
+
 	RunResult result;
 
 	string workingDir;
 public:
+	QProcess m_handle;
 	Run(Solution src);
 	RunResult execute(string input, int ms);
 };
