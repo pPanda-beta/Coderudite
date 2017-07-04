@@ -24,7 +24,7 @@ void SSEServlet::handle_parsed_request_on_end(QHttpRequest *req, map<string, str
 			requestNoOf.remove(tcpSocketConn);
 		});
 
-		replyWith(resp, "{ \"m\" : \"Socket ready for SSE\" }"s);
+		replyWith(resp, "{ \"m\" : \"Socket ready for SSE\",  \"type\" : \"BEGIN\" }"s);
 	}
 
 	if(requestNoOf[tcpSocketConn] >= 2)

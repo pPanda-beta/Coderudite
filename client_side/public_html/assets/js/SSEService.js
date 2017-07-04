@@ -20,21 +20,23 @@ function SSEService(url, payload, interval) {
 			timeout: 2000
 		});
 		this.jqXhrSSE.done(function (data) {
-			doneCallbacks.forEach(function (callback) {
-				callback(data);
-			});
+
 			try {
 				var jsonData = JSON.parse(data);
+				if (jsonData.type === "BEGIN")
+					return;
 				doneWithJsonCallbacks.forEach(function (callback) {
 					callback(jsonData);
 				});
 			} catch (e) {
-				console.log(data);
-				console.warn(e);
 			}
+
+			doneCallbacks.forEach(function (callback) {
+				callback(data);
+			});
 		});
 		this.jqXhrSSE.always(function (_d, textStatus, _e) {
-			console.log(textStatus);
+//			console.log(textStatus);
 			if (textStatus !== "error" && textStatus !== "timeout")
 				sseService.repeatImmediate();
 			else
@@ -49,7 +51,7 @@ function SSEService(url, payload, interval) {
 			this.timeoutId = setTimeout(sseService.repeatImmediate, this.lastTriggered + interval - Date.now());
 		else
 			sseService.repeatImmediate();
-		console.log(this.timeoutId);
+//		console.log(this.timeoutId);
 	};
 
 
