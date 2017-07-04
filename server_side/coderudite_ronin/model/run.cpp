@@ -1,22 +1,12 @@
 #include "run.h"
 #include <QDebug>
 #include <QDir>
-#include <mutex>
-
 map<string, function<void(Solution &, QProcess&, RunResult &, string &)>> prepare;
 
-static int runId = 1;
-static mutex mtRun;
-
-
-Run::Run(Solution src):m_src(src)
+Run::Run(Solution src, string runId):m_src(src)
 {
-	{
-		lock_guard<mutex> lk(mtRun);
-		workingDir = tmpRoot + "/"s + QString::number(runId).toStdString();
-		QDir(".").mkpath(QString::fromStdString(workingDir));
-		runId++;
-	}
+	workingDir = tmpRoot + "/run_"s + runId;
+	QDir(".").mkpath(QString::fromStdString(workingDir));
 
 	string type = m_src.getType();
 	if(prepare.find(type) != prepare.end())

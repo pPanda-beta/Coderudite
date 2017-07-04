@@ -19,7 +19,7 @@ class Run
 	string workingDir;
 public:
 	QProcess m_handle;
-	Run(Solution src);
+	Run(Solution src, string runId="test_run"s);
 	RunResult execute(string input, int ms);
 };
 

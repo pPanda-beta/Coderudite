@@ -33,7 +33,7 @@ void JudgeService::prepareRuns()
 	async_transform(pool, pendingSubmissions, runnableSolutions, [&](auto subP)
 	{
 		Solution sol(subP->get_src(), subP->get_lang());
-		auto run_ptr =  make_shared<Run>(sol);
+		auto run_ptr =  make_shared<Run>(sol, subP->get_sid());
 		moveToThread(&(run_ptr->m_handle), originalThread);
 		return run_ptr;
 	});
