@@ -21,7 +21,8 @@ void LoginServlet::handle_parsed_request_on_end(Session &session, const QJsonObj
 		replyWithJson(resp,QJsonDocument
 		(QJsonObject{
 			{ "message" , "Successfully Logged In"},
-			{ "sessionId", QStringEx(ssn.sid)	}
+			{ "sessionId", QStringEx(ssn.sid)	},
+			{ "info", QJsonObject::fromVariantHash(userService.userInfoMapper.getAllInfoOfUser(trialUser.get_id())) }
 		}));
 	}
 	else

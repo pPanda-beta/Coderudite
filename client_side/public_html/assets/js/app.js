@@ -21,6 +21,12 @@ function Application() {
 		}
 	};
 
+	this.userName = function () {
+		if (this.state.userInfo == undefined)
+			return 'NOT LOGGED IN';
+		return this.state.userInfo.firstName + ' ' + this.state.userInfo.lastName;
+	};
+
 	this.defaultServers = {
 		cdn: window.location.origin,
 		chost: window.location.protocol + '//' + window.location.hostname + ':' + '4444'

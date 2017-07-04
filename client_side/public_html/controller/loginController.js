@@ -9,8 +9,10 @@ angular.module('mainNgApp').controller('loginController', function ($scope) {
 						console.log(d);
 						$scope.message = d.message;
 						app.state.sessionId = d.sessionId;
+						app.state.userInfo = d.info;
 						app.saveState();
 						$scope.$apply();
+						$('#userName').html(app.userName());
 					});
 		}
 	};
