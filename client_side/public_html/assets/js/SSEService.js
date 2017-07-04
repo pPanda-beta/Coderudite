@@ -17,7 +17,7 @@ function SSEService(url, payload, interval) {
 			url: url,
 			method: "POST",
 			data: payload,
-			timeout: 2000
+			timeout: 12000
 		});
 		this.jqXhrSSE.done(function (data) {
 

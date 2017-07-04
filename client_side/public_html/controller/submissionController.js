@@ -8,17 +8,24 @@ angular.module('mainNgApp').controller('submissionController', function ($scope)
 //
 //
 //			});
-	app.getMySubmissionIds()
+	var loadAllSubmissions = function () {
+		app.getMySubmissionIds()
 			.onsuccess(function (subIds) {
 				subIds.forEach(function (subId) {
 					app.getSubmission(subId)
-							.onsuccess(function (submission1) {
-								$scope.submissions.push(submission1);
-								$scope.$apply();
-							});
+								.onsuccess(function (submission1) {
+									$scope.submissions.push(submission1);
+									$scope.$apply();
+								});
+					});
 				});
-			});
-
+	};
+	loadAllSubmissions();
+	submissionEvents.onJson(function (obj) {
+		if (obj.m === "Updated")
+			$scope.submissions = [];
+		loadAllSubmissions();
+	});
 //	this.getMySubmissionIds = function () {
 //
 //		return {
