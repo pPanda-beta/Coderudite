@@ -77,7 +77,7 @@ function Application() {
 			pid: app.state.currentProblem.id,
 			pname: app.state.currentProblem.name,
 			difficulty: 'Easy',
-			src: app.state.currentSrc,
+			src: app.state.currentSrc[app.state.currentLang],
 			lang: app.state.currentLang
 		});
 	};
