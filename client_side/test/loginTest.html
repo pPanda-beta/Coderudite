@@ -14,6 +14,11 @@ This is the master page
 	<body>
 		<script>
 			var loginTestApp = angular.module('mainNgApp', []);
+			var app = {
+				state : {
+					sessionId : '11'
+				}
+			};
 		</script>
 		<div ng-app="mainNgApp" ng-controller="loginController">
 			<div ng-include="'../public_html/view/loginView.html'">		</div>
